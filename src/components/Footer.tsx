@@ -1,79 +1,79 @@
-'use client';
-
-import React from 'react';
-import { Sparkles, Phone, Mail, MapPin, Heart } from 'lucide-react';
+import Logo from "@/components/Logo";
+import { whatsappHref } from "@/lib/whatsapp";
+import { brand, contact, footer, navLinks } from "@/content/site";
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 border-t border-slate-800 text-slate-400 py-16 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-10 mb-12">
-          
-          <div className="md:col-span-2 space-y-5">
+    <footer className="border-t border-sand-200 bg-sand-50 py-14">
+      <div className="mx-auto max-w-6xl px-5 md:px-8">
+        <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
+          {/* Identity */}
+          <div className="max-w-sm">
             <div className="flex items-center gap-3">
-              <img 
-                src="/logo.svg" 
-                alt="לוגו" 
-                className="w-12 h-12 object-contain"
-              />
-              <span className="text-2xl font-black text-white tracking-wide">
-                יונתן רבינוביץ'
+              <Logo className="h-9 w-auto text-ink-900" />
+              <span className="font-display text-xl font-bold text-ink-900">
+                {brand.name}
               </span>
             </div>
-            
-            <p className="text-base text-slate-400 max-w-md leading-relaxed font-medium">
-              מופע אמנות חושים ומנטליזם שיוצא מגבולות ההיגיון. הופכים כל אירוע חברה, חתונה או אירוע פרטי לחוויה בלתי נשכחת שכולם ממשיכים לדבר עליה.
-            </p>
+            <p className="mt-4 text-ink-700">{footer.tagline}</p>
           </div>
 
-          <div>
-            <h4 className="text-white font-bold text-lg mb-4 border-b border-slate-800 pb-3">
-              ניווט מהיר
-            </h4>
-            <ul className="space-y-3 text-base font-medium">
-              <li>
-                <a href="#about" className="hover:text-orange-400 transition-colors">אודות יונתן</a>
-              </li>
-              <li>
-                <a href="#game" className="hover:text-orange-400 transition-colors">האתגר האינטראקטיבי</a>
-              </li>
-              <li>
-                <a href="#shows" className="hover:text-orange-400 transition-colors">סוגי מופעים</a>
-              </li>
-              <li>
-                <a href="#gallery" className="hover:text-orange-400 transition-colors">רגעים מהשטח</a>
-              </li>
-              <li>
-                <a href="#testimonials" className="hover:text-orange-400 transition-colors">המלצות וחוות דעת</a>
-              </li>
-              <li>
-                <a href="#faq" className="hover:text-orange-400 transition-colors">שאלות נפוצות</a>
-              </li>
+          {/* Nav */}
+          <nav aria-label="ניווט תחתון">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    className="text-ink-700 transition-colors hover:text-suede-600"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
             </ul>
-          </div>
+          </nav>
 
-          <div>
-            <h4 className="text-white font-bold text-lg mb-4 border-b border-slate-800 pb-3">
-              יצירת קשר
-            </h4>
-            <ul className="space-y-4 text-base font-medium">
-              <li className="flex items-center gap-3">
-                <Mail className="w-5 h-5 text-orange-400" />
-                <span>kaspiofir@gmail.com</span>
-              </li>
-              <li className="flex items-center gap-3">
-                <MapPin className="w-5 h-5 text-orange-400" />
-                <span>מופעים בכל רחבי הארץ והעולם</span>
-              </li>
-            </ul>
+          {/* Contact */}
+          <div className="space-y-2 text-ink-700">
+            <a
+              href={whatsappHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block font-medium transition-colors hover:text-suede-600"
+            >
+              וואטסאפ
+            </a>
+            <a
+              href={contact.phoneHref}
+              className="block transition-colors hover:text-suede-600"
+            >
+              {contact.phoneDisplay}
+            </a>
+            {contact.instagram && (
+              <a
+                href={contact.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="block transition-colors hover:text-suede-600"
+              >
+                אינסטגרם
+              </a>
+            )}
+            {contact.email && (
+              <a
+                href={`mailto:${contact.email}`}
+                className="block transition-colors hover:text-suede-600"
+              >
+                {contact.email}
+              </a>
+            )}
           </div>
-
         </div>
 
-        <div className="pt-8 border-t border-slate-800 flex flex-col sm:flex-row items-center justify-between text-sm text-slate-500 gap-4 font-medium">
-          <p>© {new Date().getFullYear()} יונתן רבינוביץ' - אמנות החושים והאשליות. כל הזכויות שמורות.</p>
-          <p className="flex items-center gap-1.5">
-            נבנה בעזרת <Heart className="w-4 h-4 text-orange-500 fill-orange-500" /> על ידי Antigravity
+        <div className="mt-12 border-t border-sand-200 pt-6 text-sm text-ink-500">
+          <p>
+            © {brand.name} · {brand.location}
           </p>
         </div>
       </div>

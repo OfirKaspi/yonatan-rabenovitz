@@ -1,36 +1,54 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# יונתן רבינוביץ' — אתר תדמית
 
-## Getting Started
+Homepage for Yonatan Rabenovitz, a card artist (אמן קלפים) based in Mitzpe Ramon.
+Hebrew, RTL, WhatsApp-first booking.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router, Turbopack) + **React 19** + **TypeScript**
+- **Tailwind CSS v4** — CSS-first config in [`src/app/globals.css`](src/app/globals.css) `@theme` block (no `tailwind.config.js`)
+- **next/font** — Assistant (body) + Frank Ruhl Libre (Hebrew display)
+- **next/image** — real photography served from Cloudinary
+- Contact form: **react-hook-form** + **zod**, emailed via **Resend**
+
+> ⚠️ This Next.js version has breaking changes vs. older conventions. See [`AGENTS.md`](AGENTS.md) — consult `node_modules/next/dist/docs/` before using unfamiliar APIs.
+
+## Getting started
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev      # http://localhost:3000
+npm run build    # production build
+npm run lint
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Content
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+All copy and image references live in a single source of truth:
+[`src/content/site.ts`](src/content/site.ts). Copy is adapted from Yonatan's
+own previous site and real facts; anything new is flagged
+`NEW COPY — verify with client`. No awards/stats/clients/testimonials are invented.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Before launch — replace placeholders
 
-## Learn More
+Grep for `TODO` in `src/content/site.ts` and set the real values:
 
-To learn more about Next.js, take a look at the following resources:
+- **WhatsApp number** — `contact.whatsappNumber` (international format, digits only)
+- **Phone** — `contact.phoneDisplay` / `contact.phoneHref`
+- **Booking email** — `contact.email`, and the `BOOKING_EMAIL` env var (used by the contact API)
+- **Instagram** — `contact.instagram` if provided
+- **Official logo vector** — currently an SVG recreation in [`src/components/Logo.tsx`](src/components/Logo.tsx)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+```
+RESEND_API_KEY=      # enables real email; without it the form logs in simulation mode
+BOOKING_EMAIL=       # recipient for contact-form leads
+```
 
-## Deploy on Vercel
+## Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+`Navbar → Hero → About → מה יש לי בשרוול (services) → רגעים (moments) → מחוץ לקופסה (9-dots) → Contact → Footer`
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Sections live in [`src/components/`](src/components/); the page composes them in
+[`src/app/page.tsx`](src/app/page.tsx).

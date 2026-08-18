@@ -14,11 +14,13 @@ export async function POST(req: Request) {
     }
 
     const resendApiKey = process.env.RESEND_API_KEY;
+    // TODO: set BOOKING_EMAIL to Yonatan's real booking address before launch.
+    const bookingEmail = process.env.BOOKING_EMAIL || 'hello@example.com';
 
     if (!resendApiKey) {
       console.log('--- [Simulated Email Log - No RESEND_API_KEY found] ---');
       console.log(`Lead Received: Name=${name}, Phone=${phone}, Type=${eventType}, Date=${eventDate || 'N/A'}, Notes=${notes || 'N/A'}`);
-      console.log('Recipient: kaspiofir@gmail.com');
+      console.log(`Recipient: ${bookingEmail}`);
       console.log('------------------------------------------------------');
       
       return NextResponse.json({
@@ -32,7 +34,7 @@ export async function POST(req: Request) {
 
     const data = await resend.emails.send({
       from: 'Yonatan Website <onboarding@resend.dev>',
-      to: ['kaspiofir@gmail.com'],
+      to: [bookingEmail],
       subject: `🪄 ליד חדש מהאתר: ${name} (${eventType})`,
       html: `
         <div dir="rtl" style="font-family: Arial, sans-serif; padding: 20px; background-color: #090a0f; color: #f8fafc; border-radius: 8px;">
@@ -66,11 +68,9 @@ export async function POST(req: Request) {
     });
 
     return NextResponse.json({ success: true, data });
-  } catch (error: any) {
+  } catch (error) {
     console.error('Resend email error:', error);
-    return NextResponse.json(
-      { error: error?.message || 'שגיאה בשליחת הטופס' },
-      { status: 500 }
-    );
+    const message = error instanceof Error ? error.message : 'שגיאה בשליחת הטופס';
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }
