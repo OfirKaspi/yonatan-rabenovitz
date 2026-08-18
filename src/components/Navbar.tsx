@@ -23,19 +23,28 @@ export default function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
         scrolled
-          ? "bg-sand-50/95 border-b border-sand-200 backdrop-blur-sm"
+          ? "bg-sand-50/95 border-b border-gold-400/40 backdrop-blur-sm"
           : "bg-transparent border-b border-transparent",
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-8">
         {/* Brand */}
-        <a href="#top" className="flex items-center gap-3 text-ink-900">
+        <a
+          href="#top"
+          className={cn(
+            "flex items-center gap-3 transition-colors hover:text-gold-400",
+            scrolled ? "text-ink-900" : "text-sand-50",
+          )}
+        >
           <Logo className="h-8 w-auto" />
           <span className="flex flex-col leading-tight">
-            <span className="font-display text-lg font-bold">
-              {brand.name}
-            </span>
-            <span className="text-[11px] font-medium tracking-widest text-ink-500">
+            <span className="font-display text-lg">{brand.name}</span>
+            <span
+              className={cn(
+                "text-[11px] font-medium tracking-widest",
+                scrolled ? "text-ink-500" : "text-sand-50/80",
+              )}
+            >
               {brand.role}
             </span>
           </span>
@@ -47,7 +56,10 @@ export default function Navbar() {
             <li key={link.href}>
               <a
                 href={link.href}
-                className="text-sm font-medium text-ink-700 transition-colors hover:text-suede-600"
+                className={cn(
+                  "text-sm font-medium transition-colors hover:text-gold-400",
+                  scrolled ? "text-ink-700" : "text-sand-50",
+                )}
               >
                 {link.label}
               </a>
@@ -60,7 +72,12 @@ export default function Navbar() {
           href={whatsappHref()}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden rounded-full bg-suede-600 px-5 py-2.5 text-sm font-semibold text-sand-50 transition-colors hover:bg-suede-500 md:inline-flex"
+          className={cn(
+            "hidden rounded-full px-5 py-2.5 text-sm font-bold transition-colors md:inline-flex",
+            scrolled
+              ? "border border-gold-400 bg-ink-900 text-sand-50 hover:bg-ink-700"
+              : "bg-sand-50 text-ink-900 hover:bg-gold-400",
+          )}
         >
           {contactSection.title}
         </a>
@@ -69,7 +86,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className="text-ink-900 md:hidden"
+          className={cn("md:hidden", scrolled ? "text-ink-900" : "text-sand-50")}
           aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
           aria-expanded={open}
         >
@@ -79,7 +96,7 @@ export default function Navbar() {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-sand-200 bg-sand-50 md:hidden">
+        <div className="border-t border-gold-400/40 bg-sand-50 md:hidden">
           <ul className="flex flex-col px-5 py-2">
             {navLinks.map((link) => (
               <li key={link.href}>
@@ -97,7 +114,7 @@ export default function Navbar() {
                 href={whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center rounded-full bg-suede-600 px-5 py-3 text-base font-semibold text-sand-50"
+                className="inline-flex w-full items-center justify-center rounded-full border border-gold-400 bg-ink-900 px-5 py-3 text-base font-semibold text-sand-50"
               >
                 {contactSection.title}
               </a>

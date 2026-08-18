@@ -5,7 +5,7 @@ import { RotateCcw } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/cn";
 import { whatsappHref } from "@/lib/whatsapp";
-import { puzzle } from "@/content/site";
+import { puzzle, contactSection } from "@/content/site";
 
 interface Point {
   x: number;
@@ -16,10 +16,10 @@ interface Line {
   end: Point;
 }
 
-// Warm ink-on-sand palette (matches the design system — no orange).
-const INK = "#1c1815";
-const SUEDE = "#6b4f34";
-const DOT_IDLE = "#d8c8ae";
+// Ivory / espresso / antique gold — matches the site palette.
+const INK = "#1a1612";
+const GOLD = "#b08d3a";
+const DOT_IDLE = "#e8d9be";
 
 export default function PuzzleSection() {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -28,7 +28,6 @@ export default function PuzzleSection() {
   const [isDrawing, setIsDrawing] = useState(false);
   const [state, setState] = useState<"IDLE" | "PLAYING" | "FAIL" | "SUCCESS">("IDLE");
   const [covered, setCovered] = useState(0);
-  const [showHint, setShowHint] = useState(false);
 
   const dots: Point[] = [
     { x: 130, y: 130 }, { x: 250, y: 130 }, { x: 370, y: 130 },
@@ -63,7 +62,7 @@ export default function PuzzleSection() {
     if (!ctx) return;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-    ctx.strokeStyle = SUEDE;
+    ctx.strokeStyle = GOLD;
     ctx.lineWidth = 6;
     ctx.lineCap = "round";
     ctx.lineJoin = "round";
@@ -74,7 +73,7 @@ export default function PuzzleSection() {
       ctx.stroke();
     });
     if (currentLine) {
-      ctx.strokeStyle = "#8a6b47";
+      ctx.strokeStyle = "#c9a84c";
       ctx.beginPath();
       ctx.moveTo(currentLine.start.x, currentLine.start.y);
       ctx.lineTo(currentLine.end.x, currentLine.end.y);
@@ -149,7 +148,6 @@ export default function PuzzleSection() {
     setIsDrawing(false);
     setState("IDLE");
     setCovered(0);
-    setShowHint(false);
   };
 
   return (
@@ -158,77 +156,48 @@ export default function PuzzleSection() {
         {/* Copy */}
         <div className="text-right">
           <Reveal>
-            <p className="mb-4 text-sm font-semibold tracking-[0.25em] text-suede-600">
-              {puzzle.kicker}
-            </p>
-          </Reveal>
-          <Reveal delay={100}>
-            <h2 className="font-display text-4xl font-bold leading-tight text-ink-900 md:text-5xl">
+            <h2 className="font-display text-5xl leading-tight text-ink-900 md:text-6xl">
               {puzzle.title}
             </h2>
           </Reveal>
-          <Reveal delay={200}>
-            <p className="mt-6 font-display text-xl leading-snug text-suede-600 md:text-2xl">
-              {puzzle.tagline}
-            </p>
-          </Reveal>
-          <Reveal delay={300}>
-            <p className="mt-4 text-lg leading-relaxed text-ink-700">
+          <Reveal delay={100}>
+            <p className="mt-6 text-lg leading-relaxed text-ink-700 md:text-xl">
               {puzzle.instruction}
             </p>
           </Reveal>
 
           {state === "SUCCESS" && (
-            <div className="mt-8 border-r-2 border-suede-500 pr-6">
-              <p className="font-display text-2xl font-bold text-ink-900">
-                {puzzle.successTitle}
-              </p>
-              <p className="mt-2 text-lg text-ink-700">{puzzle.successBody}</p>
-              <a
-                href={whatsappHref()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 inline-flex rounded-full bg-ink-900 px-6 py-3 text-base font-semibold text-sand-50 transition-transform hover:-translate-y-0.5"
-              >
-                בואו נדבר
-              </a>
-            </div>
+            <a
+              href={whatsappHref()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-8 inline-flex rounded-full border border-gold-400 bg-ink-900 px-6 py-3 text-base font-semibold text-sand-50 transition-transform hover:-translate-y-0.5"
+            >
+              {contactSection.title}
+            </a>
           )}
 
           <div className="mt-8 flex items-center gap-6">
             <button
               type="button"
               onClick={reset}
-              className="inline-flex items-center gap-2 text-sm font-semibold text-ink-700 transition-colors hover:text-suede-600"
+              className="inline-flex items-center gap-2 text-ink-700 transition-colors hover:text-gold-600"
+              aria-label={puzzle.title}
             >
               <RotateCcw size={16} />
-              {puzzle.reset}
-            </button>
-            <button
-              type="button"
-              onClick={() => setShowHint((v) => !v)}
-              className="text-sm font-semibold text-ink-500 transition-colors hover:text-suede-600"
-            >
-              {puzzle.hint}
             </button>
             <span className="mr-auto text-sm font-medium tabular-nums text-ink-500">
               {covered} / 9
             </span>
           </div>
-
-          {showHint && (
-            <p className="mt-4 text-sm leading-relaxed text-ink-500">
-              {puzzle.hintText}
-            </p>
-          )}
         </div>
 
         {/* Board — plain reveal (never clip an interactive canvas) */}
         <Reveal>
           <div
             className={cn(
-              "relative mx-auto aspect-square w-full max-w-md rounded-xs border bg-sand-50 p-3 transition-colors",
-              state === "FAIL" ? "border-suede-500" : "border-sand-200",
+              "relative mx-auto aspect-square w-full max-w-md rounded-3xl border bg-sand-50 p-3 transition-colors",
+              state === "FAIL" ? "border-gold-500" : "border-sand-200",
             )}
           >
             <canvas
@@ -242,7 +211,7 @@ export default function PuzzleSection() {
               onTouchStart={start}
               onTouchMove={move}
               onTouchEnd={end}
-              className="h-full w-full touch-none rounded-xs"
+              className="h-full w-full touch-none rounded-2xl"
               style={{ cursor: "crosshair" }}
             />
           </div>

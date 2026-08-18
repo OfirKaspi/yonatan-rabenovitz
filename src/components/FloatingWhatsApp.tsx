@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { whatsappHref } from "@/lib/whatsapp";
+import { contactSection } from "@/content/site";
 
 /**
  * Persistent one-tap WhatsApp button, fixed bottom-right. Appears once the user
@@ -22,7 +23,7 @@ export default function FloatingWhatsApp() {
       href={whatsappHref()}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="שליחת הודעת וואטסאפ ליונתן"
+      aria-label={contactSection.title}
       className={`fixed bottom-5 right-5 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-whatsapp text-white shadow-lg shadow-ink-900/20 transition-all duration-300 hover:scale-105 md:bottom-7 md:right-7 md:h-16 md:w-16 ${
         visible
           ? "translate-y-0 opacity-100"

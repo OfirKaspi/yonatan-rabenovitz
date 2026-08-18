@@ -1,33 +1,32 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------------------
-   Design system — "Outside the Box"
-   Desert-neutral: warm sand base, near-black ink, suede/olive accent.
-   Drawn from Yonatan's real wardrobe (brown suede vest) and venues.
-   No orange, no gradient text, no glassmorphism.
+   Design system — bright luxury atelier
+   Ivory surfaces, warm espresso ink, antique gold accent.
+   No neon yellow, no gradient text, no glassmorphism.
 --------------------------------------------------------------------------- */
 @theme {
-  /* Surfaces */
-  --color-sand-50: #faf7f1;   /* page background — warm off-white */
-  --color-sand-100: #f3ede2;  /* raised surface */
-  --color-sand-200: #e7dccb;  /* hairline borders / dividers */
-  --color-sand-300: #d8c8ae;
+  /* Surfaces — brighter ivory / champagne */
+  --color-sand-50: #fdfbf7;   /* page background */
+  --color-sand-100: #f7f1e6;  /* raised surface */
+  --color-sand-200: #e8d9be;  /* hairline borders / dividers */
+  --color-sand-300: #d4c19a;
 
-  /* Ink (text) */
-  --color-ink-900: #1c1815;   /* near-black, warm */
-  --color-ink-700: #4a423a;   /* body text */
-  --color-ink-500: #857a6c;   /* muted / captions */
+  /* Ink (text) — warm espresso */
+  --color-ink-900: #1a1612;
+  --color-ink-700: #4a433a;
+  --color-ink-500: #7a7268;
 
-  /* Accent — suede brown + olive */
-  --color-suede-600: #6b4f34; /* primary accent */
-  --color-suede-500: #8a6b47;
-  --color-olive-700: #4f5136; /* secondary accent (venue greens) */
+  /* Accent — antique gold */
+  --color-gold-600: #b08d3a;
+  --color-gold-500: #c9a84c;
+  --color-gold-400: #d4bc6a;
 
   /* Functional */
   --color-whatsapp: #25d366;
 
-  --font-sans: var(--font-assistant);
-  --font-display: var(--font-display);
+  --font-sans: var(--font-heebo);
+  --font-display: var(--font-frank-ruhl);
 }
 
 :root {
@@ -38,7 +37,7 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
-  font-family: var(--font-assistant), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-heebo), system-ui, -apple-system, sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
 }
@@ -49,14 +48,22 @@ html {
 
 /* Display font for headings (loaded via next/font as --font-display).
    Hebrew has no ascenders/descenders, so negative letter-spacing and sub-1
-   line-height cramp it — we keep headings breathing with a warm serif. */
+   line-height cramp it — headings breathe at ~1.2. */
 .font-display {
-  font-family: var(--font-display), var(--font-assistant), Georgia, serif;
+  font-family: var(--font-frank-ruhl), var(--font-heebo), Georgia, serif;
+  font-weight: 700;
   letter-spacing: 0;
   word-spacing: 0.02em;
+  line-height: 1.2;
 }
 
-/* Body text: slightly looser tracking reads better in Hebrew Assistant. */
+h1.font-display {
+  font-weight: 900;
+}
+
+.hero-copy {
+  text-shadow: 0 1px 2px rgb(0 0 0 / 0.7), 0 8px 28px rgb(0 0 0 / 0.45);
+}
 body {
   letter-spacing: 0.01em;
   text-rendering: optimizeLegibility;
@@ -81,11 +88,11 @@ h3 {
   border-radius: 5px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-suede-500);
+  background: var(--color-gold-500);
 }
 
 ::selection {
-  background: var(--color-suede-600);
+  background: var(--color-gold-600);
   color: var(--color-sand-50);
 }
 

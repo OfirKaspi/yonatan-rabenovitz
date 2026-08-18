@@ -8,7 +8,7 @@ import Image from "next/image";
 import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/cn";
 import { whatsappHref } from "@/lib/whatsapp";
-import { contactSection, contact, assets, sleeve } from "@/content/site";
+import { contactSection, contact, assets, sleeve, brand } from "@/content/site";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "נא להזין שם מלא (לפחות 2 אותיות)" }),
@@ -50,23 +50,18 @@ export default function ContactForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      const json = await res.json();
-      if (!res.ok) throw new Error(json.error || "שגיאה בשליחת הטופס");
+      if (!res.ok) throw new Error();
       setIsSubmitted(true);
       reset();
     } catch (err) {
-      setErrorMessage(
-        err instanceof Error
-          ? err.message
-          : "מתנצלים, אירעה שגיאה. נסו שוב או שלחו הודעת וואטסאפ.",
-      );
+      setErrorMessage(contact.phoneDisplay);
     } finally {
       setIsSubmitting(false);
     }
   };
 
   const fieldBase =
-    "w-full rounded-xs border bg-sand-50 px-4 py-3 text-ink-900 placeholder:text-ink-500/60 transition-colors focus:border-suede-500 focus:bg-white focus:outline-none";
+    "w-full rounded-2xl border bg-sand-50 px-4 py-3 text-ink-900 placeholder:text-ink-500/60 transition-colors focus:border-gold-500 focus:bg-white focus:outline-none";
 
   return (
     <section id="contact" className="bg-sand-100 py-20 md:py-32">
@@ -74,22 +69,12 @@ export default function ContactForm() {
         {/* Left — the invitation + WhatsApp-first */}
         <div className="md:col-span-6 md:pt-4">
           <Reveal>
-            <p className="mb-4 text-sm font-semibold tracking-[0.25em] text-suede-600">
-              {contactSection.kicker}
-            </p>
-          </Reveal>
-          <Reveal delay={100}>
-            <h2 className="font-display text-4xl font-bold leading-tight text-ink-900 md:text-5xl">
+            <h2 className="font-display text-5xl leading-tight text-ink-900 md:text-6xl">
               {contactSection.title}
             </h2>
           </Reveal>
-          <Reveal delay={200}>
-            <p className="mt-5 max-w-md text-lg leading-relaxed text-ink-700">
-              {contactSection.sub}
-            </p>
-          </Reveal>
 
-          <Reveal delay={300}>
+          <Reveal delay={200}>
             <a
               href={whatsappHref()}
               target="_blank"
@@ -97,63 +82,43 @@ export default function ContactForm() {
               className="mt-8 inline-flex items-center gap-3 rounded-full bg-whatsapp px-7 py-4 text-lg font-semibold text-white transition-transform hover:-translate-y-0.5"
             >
               <WhatsAppIcon className="h-6 w-6" />
-              {contactSection.whatsappCta}
+              {contactSection.title}
             </a>
           </Reveal>
 
-          {/* Direct details — real values pending (flagged placeholders). */}
-          <Reveal delay={400}>
+          <Reveal delay={300}>
             <dl className="mt-10 space-y-3 border-t border-sand-200 pt-8 text-ink-700">
-              <div className="flex items-baseline gap-3">
-                <dt className="text-sm font-semibold text-ink-500">טלפון</dt>
+              <div>
                 <dd>
                   <a
                     href={contact.phoneHref}
-                    className="text-lg font-medium transition-colors hover:text-suede-600"
+                    className="text-lg font-medium transition-colors hover:text-gold-600"
                   >
                     {contact.phoneDisplay}
                   </a>
                 </dd>
               </div>
-              {contact.instagram && (
-                <div className="flex items-baseline gap-3">
-                  <dt className="text-sm font-semibold text-ink-500">אינסטגרם</dt>
-                  <dd>
-                    <a
-                      href={contact.instagram}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-lg font-medium transition-colors hover:text-suede-600"
-                    >
-                      @yonatan.rabinovitz
-                    </a>
-                  </dd>
-                </div>
-              )}
-              {contact.email && (
-                <div className="flex items-baseline gap-3">
-                  <dt className="text-sm font-semibold text-ink-500">אימייל</dt>
-                  <dd>
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="text-lg font-medium transition-colors hover:text-suede-600"
-                    >
-                      {contact.email}
-                    </a>
-                  </dd>
-                </div>
-              )}
+              <div>
+                <dd>
+                  <a
+                    href={`mailto:${contact.email}`}
+                    className="text-lg font-medium transition-colors hover:text-gold-600"
+                  >
+                    {contact.email}
+                  </a>
+                </dd>
+              </div>
             </dl>
           </Reveal>
         </div>
 
         {/* Right — secondary form */}
         <div className="md:col-span-6">
-          <Reveal variant="mask" className="overflow-hidden rounded-sm border border-sand-200 bg-sand-50">
+          <Reveal variant="mask" className="overflow-hidden rounded-3xl border border-sand-200 bg-sand-50">
             <div className="relative aspect-3/1 w-full">
               <Image
                 src={assets.audience1}
-                alt="רגע של פליאה מול הקהל"
+                alt={brand.name}
                 fill
                 sizes="(max-width: 768px) 90vw, 45vw"
                 className="object-cover"
@@ -163,35 +128,32 @@ export default function ContactForm() {
             <div className="p-6 md:p-8">
               {isSubmitted ? (
                 <div className="py-10 text-center">
-                  <h3 className="font-display text-2xl font-bold text-ink-900">
-                    הפנייה התקבלה, תודה.
-                  </h3>
-                  <p className="mt-3 text-ink-700">
-                    יונתן קיבל את הפרטים ויחזור אליכם בהקדם.
-                  </p>
-                  <button
-                    type="button"
-                    onClick={() => setIsSubmitted(false)}
-                    className="mt-6 text-sm font-semibold text-suede-600 hover:text-suede-500"
+                  <a
+                    href={contact.phoneHref}
+                    className="font-display text-2xl text-ink-900 transition-colors hover:text-gold-600"
                   >
-                    שליחת פנייה נוספת
-                  </button>
+                    {contact.phoneDisplay}
+                  </a>
+                  <p className="mt-3">
+                    <a
+                      href={`mailto:${contact.email}`}
+                      className="text-ink-700 transition-colors hover:text-gold-600"
+                    >
+                      {contact.email}
+                    </a>
+                  </p>
                 </div>
               ) : (
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-4 text-right">
-                  <p className="text-sm font-semibold text-ink-500">
-                    {contactSection.formTitle}
-                  </p>
-
                   <div>
                     <input
                       {...register("name")}
                       type="text"
-                      placeholder="שם מלא"
-                      className={cn(fieldBase, errors.name ? "border-suede-500" : "border-sand-200")}
+                      placeholder="שם"
+                      className={cn(fieldBase, errors.name ? "border-gold-500" : "border-sand-200")}
                     />
                     {errors.name && (
-                      <p className="mt-1 text-xs font-medium text-suede-600">{errors.name.message}</p>
+                      <p className="mt-1 text-xs font-medium text-gold-600">{errors.name.message}</p>
                     )}
                   </div>
 
@@ -199,11 +161,11 @@ export default function ContactForm() {
                     <input
                       {...register("phone")}
                       type="tel"
-                      placeholder="טלפון"
-                      className={cn(fieldBase, errors.phone ? "border-suede-500" : "border-sand-200")}
+                      placeholder={contact.phoneDisplay}
+                      className={cn(fieldBase, errors.phone ? "border-gold-500" : "border-sand-200")}
                     />
                     {errors.phone && (
-                      <p className="mt-1 text-xs font-medium text-suede-600">{errors.phone.message}</p>
+                      <p className="mt-1 text-xs font-medium text-gold-600">{errors.phone.message}</p>
                     )}
                   </div>
 
@@ -216,7 +178,6 @@ export default function ContactForm() {
                         {item.title}
                       </option>
                     ))}
-                    <option value="אירוע אחר">אירוע אחר</option>
                   </select>
 
                   <input
@@ -228,12 +189,11 @@ export default function ContactForm() {
                   <textarea
                     {...register("notes")}
                     rows={3}
-                    placeholder="ספרו מעט על האירוע..."
                     className={cn(fieldBase, "resize-none border-sand-200")}
                   />
 
                   {errorMessage && (
-                    <p className="rounded-xs bg-suede-500/10 px-4 py-3 text-center text-sm font-medium text-suede-600">
+                    <p className="rounded-2xl bg-gold-500/10 px-4 py-3 text-center text-sm font-medium text-gold-600">
                       {errorMessage}
                     </p>
                   )}
@@ -241,9 +201,9 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full rounded-full bg-ink-900 py-3.5 text-base font-semibold text-sand-50 transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+                    className="w-full rounded-full border border-gold-400 bg-ink-900 py-3.5 text-base font-semibold text-sand-50 transition-transform hover:-translate-y-0.5 disabled:opacity-60"
                   >
-                    {isSubmitting ? "שולח..." : "שליחה"}
+                    {contactSection.title}
                   </button>
                 </form>
               )}

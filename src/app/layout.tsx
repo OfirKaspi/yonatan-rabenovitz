@@ -1,15 +1,15 @@
 import type { Metadata, Viewport } from "next";
-import { Assistant, Frank_Ruhl_Libre } from "next/font/google";
+import { Frank_Ruhl_Libre, Heebo } from "next/font/google";
 import "./globals.css";
 
-const assistant = Assistant({
-  variable: "--font-assistant",
+const heebo = Heebo({
+  variable: "--font-heebo",
   subsets: ["hebrew", "latin"],
   weight: ["300", "400", "500", "600", "700"],
 });
 
 const frankRuhl = Frank_Ruhl_Libre({
-  variable: "--font-display",
+  variable: "--font-frank-ruhl",
   subsets: ["hebrew", "latin"],
   weight: ["400", "500", "700", "900"],
 });
@@ -17,15 +17,14 @@ const frankRuhl = Frank_Ruhl_Libre({
 export const metadata: Metadata = {
   title: "יונתן רבינוביץ' | אמן קלפים",
   description:
-    "יונתן רבינוביץ' — אמן קלפים ממצפה רמון. קסמי קלפים מקרוב, קבלות פנים, מופעים וסדנאות. בואו נדבר.",
+    "יונתן רבינוביץ', אמן קלפים, חי במרחב השראה בלב המדבר - מצפה רמון.",
   keywords: [
     "יונתן רבינוביץ'",
     "אמן קלפים",
-    "קוסם",
-    "קסמי קלפים",
-    "מצפה רמון",
-    "קוסם לאירועים",
-    "מופע קסמים",
+    "קבלת פנים - walk around magic",
+    "מזל טוב - מופע קסמים ייחודי",
+    "סודות הקוסם - סדנת קסמים",
+    "שיעורים פרטיים",
   ],
   authors: [{ name: "יונתן רבינוביץ'" }],
 };
@@ -44,7 +43,7 @@ export default function RootLayout({
     <html
       lang="he"
       dir="rtl"
-      className={`${assistant.variable} ${frankRuhl.variable}`}
+      className={`${heebo.variable} ${frankRuhl.variable}`}
     >
       <body className="bg-sand-50 text-ink-900 min-h-screen flex flex-col font-sans antialiased">
         {children}
