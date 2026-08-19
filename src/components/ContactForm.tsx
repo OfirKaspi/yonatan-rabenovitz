@@ -70,7 +70,7 @@ export default function ContactForm() {
         {/* Left — the invitation + WhatsApp-first */}
         <div className="md:col-span-6 md:pt-4">
           <Reveal>
-            <h2 className="font-display text-5xl leading-tight text-ink-900 md:text-6xl">
+            <h2 className="font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-6xl">
               {contactSection.title}
             </h2>
           </Reveal>
@@ -80,7 +80,7 @@ export default function ContactForm() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-3 rounded-full bg-whatsapp px-7 py-4 text-lg font-bold text-white transition-transform hover:-translate-y-0.5"
+              className="mt-8 inline-flex items-center gap-3 rounded-full bg-whatsapp px-7 py-4 text-lg font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5"
             >
               <WhatsAppIcon className="h-6 w-6" />
               {contactSection.title}
@@ -131,7 +131,7 @@ export default function ContactForm() {
                 <div className="py-10 text-center">
                   <a
                     href={contact.phoneHref}
-                    className="font-display text-2xl text-ink-900 transition-colors hover:text-gold-600"
+                    className="font-display font-bold text-2xl text-ink-900 transition-colors hover:text-gold-600"
                   >
                     {contact.phoneDisplay}
                   </a>
@@ -154,7 +154,7 @@ export default function ContactForm() {
                       className={cn(fieldBase, errors.name ? "border-gold-500" : "border-sand-200")}
                     />
                     {errors.name && (
-                      <p className="mt-1 text-xs font-medium text-gold-600">{errors.name.message}</p>
+                      <p className="mt-1 text-xs font-medium tracking-wider text-gold-600">{errors.name.message}</p>
                     )}
                   </div>
 
@@ -166,7 +166,7 @@ export default function ContactForm() {
                       className={cn(fieldBase, errors.phone ? "border-gold-500" : "border-sand-200")}
                     />
                     {errors.phone && (
-                      <p className="mt-1 text-xs font-medium text-gold-600">{errors.phone.message}</p>
+                      <p className="mt-1 text-xs font-medium tracking-wider text-gold-600">{errors.phone.message}</p>
                     )}
                   </div>
 
@@ -202,7 +202,7 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full rounded-full border border-gold-400 bg-ink-900 py-3.5 text-base font-semibold text-sand-50 transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+                    className="w-full rounded-full border border-gold-400 bg-ink-900 py-3.5 text-base font-display font-bold tracking-wide text-sand-50 transition-transform hover:-translate-y-0.5 disabled:opacity-60"
                   >
                     {contactSection.title}
                   </button>

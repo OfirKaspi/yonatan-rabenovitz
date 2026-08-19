@@ -157,12 +157,12 @@ export default function PuzzleSection() {
         {/* Copy */}
         <div className="text-right">
           <Reveal>
-            <h2 className="font-display text-5xl leading-tight text-ink-900 md:text-6xl">
+            <h2 className="font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-6xl">
               {puzzle.title}
             </h2>
           </Reveal>
           <Reveal delay={100}>
-            <p className="mt-6 text-lg leading-relaxed text-ink-700 md:text-xl">
+            <p className="mt-6 text-lg font-normal leading-7 text-ink-700 md:text-xl">
               {puzzle.instruction}
             </p>
           </Reveal>
@@ -172,7 +172,7 @@ export default function PuzzleSection() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-base font-bold text-white transition-transform hover:-translate-y-0.5"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-base font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5"
             >
               <WhatsAppIcon className="h-5 w-5" />
               {contactSection.title}
@@ -188,7 +188,7 @@ export default function PuzzleSection() {
             >
               <RotateCcw size={16} />
             </button>
-            <span className="mr-auto text-sm font-medium tabular-nums text-ink-500">
+            <span className="mr-auto text-sm font-medium tracking-wider tabular-nums text-ink-500">
               {covered} / 9
             </span>
           </div>

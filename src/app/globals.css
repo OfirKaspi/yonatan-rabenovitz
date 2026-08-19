@@ -26,7 +26,7 @@
   --color-whatsapp: #25d366;
 
   --font-sans: var(--font-heebo);
-  --font-display: var(--font-frank-ruhl);
+  --font-display: var(--font-rubik);
 }
 
 :root {
@@ -46,19 +46,10 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Display font for headings (loaded via next/font as --font-display).
-   Hebrew has no ascenders/descenders, so negative letter-spacing and sub-1
-   line-height cramp it — headings breathe at ~1.2. */
+/* Display font (Rubik) — family only. Set weight / tracking / leading on the element.
+   Hebrew has no ascenders/descenders; keep tracking at tracking-tight or looser. */
 .font-display {
-  font-family: var(--font-frank-ruhl), var(--font-heebo), Georgia, serif;
-  font-weight: 700;
-  letter-spacing: 0;
-  word-spacing: 0.02em;
-  line-height: 1.2;
-}
-
-h1.font-display {
-  font-weight: 900;
+  font-family: var(--font-rubik), var(--font-heebo), system-ui, sans-serif;
 }
 
 .hero-copy {

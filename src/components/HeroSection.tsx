@@ -34,7 +34,7 @@ export default function HeroSection() {
 
       <div className="relative z-10 mx-auto flex min-h-svh max-w-6xl items-center px-5 pt-28 pb-16 md:px-8 md:pb-24">
         <div className="max-w-3xl">
-          <h1 className="hero-copy font-display text-6xl text-sand-50 sm:text-7xl md:text-8xl">
+          <h1 className="hero-copy font-display font-black tracking-tight leading-[1.15] text-6xl text-sand-50 sm:text-7xl md:text-8xl">
             <span
               className="rise block"
               data-revealed={revealed}
@@ -60,14 +60,14 @@ export default function HeroSection() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-whatsapp px-7 py-3.5 text-base font-bold text-white transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-whatsapp px-7 py-3.5 text-base font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5"
             >
               <WhatsAppIcon className="h-5 w-5" />
               {hero.ctaPrimary}
             </a>
             <a
               href="#sleeve"
-              className="inline-flex items-center gap-2 text-base font-bold text-sand-50 underline decoration-gold-400 decoration-2 underline-offset-8 transition-colors hover:text-gold-400"
+              className="inline-flex items-center gap-2 text-base font-display font-bold tracking-wide text-sand-50 underline decoration-gold-400 decoration-2 underline-offset-8 transition-colors hover:text-gold-400"
             >
               {hero.ctaSecondary}
             </a>

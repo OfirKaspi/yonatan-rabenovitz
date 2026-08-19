@@ -9,7 +9,7 @@ export default function Footer() {
           <div className="max-w-sm">
             <div className="flex items-center gap-3">
               <Logo className="h-9 w-auto text-ink-900" />
-              <span className="font-display text-xl text-ink-900">
+              <span className="font-display font-bold text-xl text-ink-900">
                 {brand.name}
               </span>
             </div>

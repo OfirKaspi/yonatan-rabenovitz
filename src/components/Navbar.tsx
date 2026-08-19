@@ -39,7 +39,7 @@ export default function Navbar() {
         >
           <Logo className="h-8 w-auto" />
           <span className="flex flex-col leading-tight">
-            <span className="font-display text-lg">{brand.name}</span>
+            <span className="font-display font-bold text-lg">{brand.name}</span>
             <span
               className={cn(
                 "text-[11px] font-medium tracking-widest",
@@ -73,7 +73,7 @@ export default function Navbar() {
           href={whatsappHref()}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-bold text-white transition-transform hover:-translate-y-0.5 md:inline-flex"
+          className="hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5 md:inline-flex"
         >
           <WhatsAppIcon className="h-4 w-4" />
           {contactSection.title}
@@ -111,7 +111,7 @@ export default function Navbar() {
                 href={whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 text-base font-bold text-white"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 text-base font-display font-bold tracking-wide text-white"
               >
                 <WhatsAppIcon className="h-5 w-5" />
                 {contactSection.title}

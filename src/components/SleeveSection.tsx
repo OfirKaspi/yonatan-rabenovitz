@@ -14,7 +14,7 @@ export default function SleeveSection() {
     <section id="sleeve" className="bg-sand-100 py-20 md:py-32">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <Reveal>
-          <h2 className="mb-12 max-w-2xl font-display text-5xl leading-tight text-ink-900 md:mb-16 md:text-6xl">
+          <h2 className="mb-12 max-w-2xl font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:mb-16 md:text-6xl">
             {sleeve.title}
           </h2>
         </Reveal>
@@ -38,7 +38,7 @@ export default function SleeveSection() {
                   >
                     <span
                       className={cn(
-                        "font-display text-sm tabular-nums transition-colors",
+                        "text-sm font-medium tracking-wider tabular-nums transition-colors",
                         isActive ? "text-gold-600" : "text-ink-500",
                       )}
                     >
@@ -47,7 +47,7 @@ export default function SleeveSection() {
                     <span className="flex-1">
                       <span
                         className={cn(
-                          "font-display text-2xl transition-colors md:text-3xl",
+                          "font-display font-bold text-2xl transition-colors md:text-3xl",
                           isActive ? "text-gold-600" : "text-ink-900",
                         )}
                       >
