@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState, type KeyboardEvent } from "react";
-import Image from "next/image";
+import OptimizedImage from "@/components/OptimizedImage";
 import { ChevronDown } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
@@ -138,7 +138,7 @@ export default function SleeveSection() {
   );
 
   return (
-    <section id="sleeve" className="bg-sand-100 py-20 md:py-32">
+    <section id="sleeve" className="scroll-mt-28 bg-sand-100 py-20 md:py-32">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <Reveal>
           <h2 className="mb-12 text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:mb-16 md:text-6xl">
@@ -209,12 +209,15 @@ export default function SleeveSection() {
                     <div className="bg-sand-50 p-5 md:p-8">
                       <div className="grid grid-cols-1 gap-6 md:grid-cols-12 md:gap-10">
                         <div className="relative aspect-4/5 overflow-hidden rounded-3xl md:col-span-5 md:aspect-auto md:h-full md:min-h-96">
-                          <Image
+                          <OptimizedImage
                             key={item.id}
                             src={item.image}
                             alt={item.title}
                             fill
-                            sizes="(max-width: 768px) 90vw, 40vw"
+                            width={960}
+                            height={1200}
+                            crop="fill"
+                            gravity="auto"
                             className="object-cover"
                             priority={i === 0}
                           />

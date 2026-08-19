@@ -4,13 +4,11 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import Image from "next/image";
+import OptimizedImage from "@/components/OptimizedImage";
 import { Check } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/cn";
-import { whatsappHref } from "@/lib/whatsapp";
 import { contactSection, contact, assets, sleeve, brand, legal } from "@/content/site";
-import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 const formSchema = z.object({
   name: z.string().min(2, { message: "נא להזין שם מלא (לפחות 2 אותיות)" }),
@@ -74,51 +72,13 @@ export default function ContactForm() {
     "w-full rounded-2xl border bg-sand-50 px-4 py-3 text-ink-900 placeholder:text-ink-500/60 transition-colors focus:border-gold-500 focus:bg-white focus:outline-none";
 
   return (
-    <section id="contact" className="bg-sand-100 py-20 md:py-32">
+    <section id="contact" className="scroll-mt-28 bg-sand-100 py-20 md:py-32">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-5 md:grid-cols-12 md:gap-16 md:px-8">
-        {/* Left — the invitation + WhatsApp-first */}
         <div className="md:col-span-6 md:pt-4">
           <Reveal>
             <h2 className="text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-start md:text-6xl">
               {contactSection.title}
             </h2>
-          </Reveal>
-
-          <Reveal delay={200}>
-            <a
-              href={whatsappHref()}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="mt-8 inline-flex items-center gap-3 rounded-full bg-whatsapp px-7 py-4 text-lg font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5"
-            >
-              <WhatsAppIcon className="h-6 w-6" />
-              {contactSection.title}
-            </a>
-          </Reveal>
-
-          <Reveal delay={300}>
-            <dl className="mt-10 space-y-3 border-t border-sand-200 pt-8 text-ink-700">
-              <div>
-                <dd>
-                  <a
-                    href={contact.phoneHref}
-                    className="text-lg font-medium transition-colors hover:text-gold-600"
-                  >
-                    {contact.phoneDisplay}
-                  </a>
-                </dd>
-              </div>
-              <div>
-                <dd>
-                  <a
-                    href={`mailto:${contact.email}`}
-                    className="text-lg font-medium transition-colors hover:text-gold-600"
-                  >
-                    {contact.email}
-                  </a>
-                </dd>
-              </div>
-            </dl>
           </Reveal>
         </div>
 
@@ -126,11 +86,14 @@ export default function ContactForm() {
         <div className="md:col-span-6">
           <Reveal variant="mask" className="overflow-hidden rounded-3xl border border-sand-200 bg-sand-50">
             <div className="relative aspect-3/1 w-full">
-              <Image
+              <OptimizedImage
                 src={assets.audience1}
                 alt={brand.name}
                 fill
-                sizes="(max-width: 768px) 90vw, 45vw"
+                width={1200}
+                height={400}
+                crop="fill"
+                gravity="auto"
                 className="object-cover"
               />
             </div>
@@ -220,6 +183,29 @@ export default function ContactForm() {
                   </p>
                 </form>
               )}
+
+              <dl className="mt-6 space-y-2 border-t border-sand-200 pt-6 text-center text-ink-700">
+                <div>
+                  <dd>
+                    <a
+                      href={contact.phoneHref}
+                      className="text-lg font-medium transition-colors hover:text-gold-600"
+                    >
+                      {contact.phoneDisplay}
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dd>
+                    <a
+                      href={`mailto:${contact.email}`}
+                      className="text-lg font-medium transition-colors hover:text-gold-600"
+                    >
+                      {contact.email}
+                    </a>
+                  </dd>
+                </div>
+              </dl>
             </div>
           </Reveal>
         </div>

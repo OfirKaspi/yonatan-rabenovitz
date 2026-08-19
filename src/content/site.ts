@@ -6,10 +6,12 @@
  */
 
 import type { GalleryItem } from "@/lib/gallery";
+import {
+  CLOUDINARY_IMAGE_BASE as CLOUD,
+  CLOUDINARY_VIDEO_BASE,
+} from "@/lib/cloudinary";
 
-export { cld } from "@/lib/gallery";
-
-const CLOUD = "https://res.cloudinary.com/dudwjf2pu/image/upload";
+export { cld } from "@/lib/cloudinary";
 
 export const assets = {
   logo: `${CLOUD}/v1786951970/LevelUp/yonatan-rabenovitz/WhatsApp_Image_2026-08-04_at_19.13.38_dbt55r.jpg`,
@@ -27,6 +29,7 @@ export const assets = {
   galleryB: `${CLOUD}/v1787154402/LevelUp/yonatan-rabenovitz/8ae44163-f366-49fa-b4ba-97ea9e48e58f_l9c31o.jpg`,
   workshop: `${CLOUD}/v1787154400/LevelUp/yonatan-rabenovitz/554cbed5-3878-4359-b59b-d6f5797f3ae7_anqazq.jpg`,
   og: `${CLOUD}/v1787154398/LevelUp/yonatan-rabenovitz/1a3a6490-ee2a-45b1-82c0-ff233717d573_yznrvk.jpg`,
+  logoAnimation: `${CLOUDINARY_VIDEO_BASE}/v1787157830/LevelUp/yonatan-rabenovitz/logo-animation-loop.mp4`,
 } as const;
 
 export const contact = {
@@ -46,6 +49,8 @@ export const brand = {
 export const navLinks = [
   { label: "מי אני?", href: "/#about" },
   { label: "מה יש לי בשרוול?", href: "/#sleeve" },
+  { label: "סרטונים", href: "/#videos" },
+  { label: "גלריה", href: "/#gallery" },
   { label: "חידה קטנה עד שניפגש", href: "/#puzzle" },
   { label: "בואו נדבר", href: "/#contact" },
 ] as const;
@@ -171,6 +176,7 @@ export const sleeve = {
 
 export const moments = {
   title: "גלריה",
+  cta: "רוצים לראות עוד?",
   items: [
     { type: "image", src: assets.galleryB },
     { type: "image", src: assets.galleryA },

@@ -1,23 +1,26 @@
 "use client";
 
-import Image from "next/image";
+import OptimizedImage from "@/components/OptimizedImage";
 import Reveal from "@/components/Reveal";
 import { about, assets, brand } from "@/content/site";
 
 export default function AboutSection() {
   return (
-    <section id="about" className="bg-sand-50 py-20 md:py-32">
+    <section id="about" className="scroll-mt-28 bg-sand-50 py-20 md:py-32">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 px-5 md:grid-cols-12 md:gap-12 md:px-8">
         <div className="md:col-span-5">
           <Reveal
             variant="mask"
             className="relative aspect-4/5 overflow-hidden rounded-3xl md:sticky md:top-28"
           >
-            <Image
+            <OptimizedImage
               src={assets.stage}
               alt={brand.name}
               fill
-              sizes="(max-width: 768px) 90vw, 40vw"
+              width={960}
+              height={1200}
+              crop="fill"
+              gravity="auto"
               className="object-cover"
             />
           </Reveal>

@@ -1,6 +1,4 @@
-export function cld(transform: string, url: string): string {
-  return url.replace("/image/upload/", `/image/upload/${transform}/`);
-}
+export { cld } from "@/lib/cloudinary";
 
 export type GalleryImageItem = { type: "image"; src: string; alt?: string };
 

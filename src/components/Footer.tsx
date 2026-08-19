@@ -1,10 +1,28 @@
 import Logo from "@/components/Logo";
+import LogoAnimation from "@/components/LogoAnimation";
+import InstagramIcon from "@/components/InstagramIcon";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { agency, brand, contact, legal, navLinks } from "@/content/site";
+import { whatsappHref } from "@/lib/whatsapp";
+
+const socials = [
+  {
+    label: "Instagram",
+    href: contact.instagram,
+    icon: InstagramIcon,
+  },
+  {
+    label: "WhatsApp",
+    href: whatsappHref(),
+    icon: WhatsAppIcon,
+  },
+] as const;
 
 export default function Footer() {
   return (
-    <footer className="border-t border-sand-200 bg-sand-50 py-14">
-      <div className="mx-auto max-w-6xl px-5 md:px-8">
+    <footer className="border-t border-sand-200 bg-sand-50">
+      <LogoAnimation />
+      <div className="mx-auto max-w-6xl px-5 py-14 md:px-8">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           <div className="max-w-sm">
             <div className="flex items-center gap-3">
@@ -14,6 +32,21 @@ export default function Footer() {
               </span>
             </div>
             <p className="mt-4 text-ink-700">{brand.role}</p>
+            <ul className="mt-5 flex items-center gap-2">
+              {socials.map((social) => (
+                <li key={social.label}>
+                  <a
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.label}
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-sand-200 text-ink-700 transition-colors hover:border-gold-500 hover:text-gold-600"
+                  >
+                    <social.icon className="h-5 w-5" />
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
 
           <nav aria-label={brand.name}>

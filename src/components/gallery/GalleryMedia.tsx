@@ -1,6 +1,6 @@
-import Image from "next/image";
 import { Play } from "lucide-react";
-import { cld } from "@/lib/gallery";
+import OptimizedImage from "@/components/OptimizedImage";
+import { cld } from "@/lib/cloudinary";
 import { cn } from "@/lib/cn";
 import type { GalleryItem } from "@/lib/gallery";
 
@@ -36,7 +36,7 @@ export default function GalleryMedia({
 }) {
   return (
     <>
-      <Image
+      <OptimizedImage
         src={mediaSrc(item, variant)}
         alt={alt}
         fill

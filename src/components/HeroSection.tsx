@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
+import OptimizedImage from "@/components/OptimizedImage";
 import { whatsappHref } from "@/lib/whatsapp";
 import { hero, assets, brand, cld } from "@/content/site";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
@@ -20,12 +20,11 @@ export default function HeroSection() {
 
   return (
     <section id="top" className="relative min-h-svh overflow-hidden bg-ink-900">
-      <Image
+      <OptimizedImage
         src={heroImage}
         alt={brand.name}
         fill
         priority
-        sizes="100vw"
         className="object-cover"
       />
 

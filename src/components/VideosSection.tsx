@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import Image from "next/image";
+import OptimizedImage from "@/components/OptimizedImage";
 import { Play } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import InstagramIcon from "@/components/InstagramIcon";
@@ -29,7 +29,7 @@ export default function VideosSection() {
   if (!selected) return null;
 
   return (
-    <section id="videos" className="bg-sand-50 py-20 md:py-32">
+    <section id="videos" className="scroll-mt-28 bg-sand-50 py-20 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal>
           <h2 className="mb-12 text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:mb-16 md:text-6xl">
@@ -69,11 +69,10 @@ export default function VideosSection() {
                       : "opacity-80 hover:opacity-100",
                   )}
                 >
-                  <Image
+                  <OptimizedImage
                     src={item.poster}
                     alt=""
                     fill
-                    sizes="(max-width: 768px) 30vw, 160px"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center">

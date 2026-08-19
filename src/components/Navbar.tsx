@@ -58,7 +58,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
         </a>
 
         {/* Desktop links */}
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-5 lg:flex xl:gap-8">
           {navLinks.map((link) => (
             <li key={link.href}>
               <a
@@ -79,7 +79,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
           href={whatsappHref()}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5 md:inline-flex"
+          className="hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5 lg:inline-flex"
         >
           <WhatsAppIcon className="h-4 w-4" />
           {contactSection.title}
@@ -89,7 +89,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className={cn("md:hidden", solid ? "text-ink-900" : "text-sand-50")}
+          className={cn("lg:hidden", solid ? "text-ink-900" : "text-sand-50")}
           aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
           aria-expanded={open}
         >
@@ -99,7 +99,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
 
       {/* Mobile menu */}
       {open && (
-        <div className="border-t border-gold-400/40 bg-sand-50 md:hidden">
+        <div className="border-t border-gold-400/40 bg-sand-50 lg:hidden">
           <ul className="flex flex-col px-5 py-2">
             {navLinks.map((link) => (
               <li key={link.href}>
