@@ -62,7 +62,7 @@ export default function MediaGallery({
                 className={cn(
                   "group relative block aspect-square w-20 overflow-hidden rounded-2xl md:w-28",
                   selectedThumb
-                    ? "ring-2 ring-gold-500 ring-offset-2 ring-offset-sand-50"
+                    ? "ring-2 ring-gold-500 ring-offset-2 ring-offset-sand-100"
                     : "opacity-80 hover:opacity-100",
                 )}
               >

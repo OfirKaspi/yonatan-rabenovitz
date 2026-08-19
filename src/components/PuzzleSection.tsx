@@ -216,7 +216,7 @@ export default function PuzzleSection() {
   }, [successOpen]);
 
   return (
-    <section id="puzzle" className="bg-sand-100 py-20 md:py-32">
+    <section id="puzzle" className="bg-sand-50 py-20 md:py-32">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 md:grid-cols-2 md:gap-16 md:px-8">
         <div className="text-right">
           <Reveal>

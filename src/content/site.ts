@@ -34,6 +34,7 @@ export const contact = {
   phoneDisplay: "054-9383155",
   phoneHref: "tel:+972549383155",
   email: "Yonatan.rabenovitz@gmail.com",
+  instagram: "https://www.instagram.com/yonatan.rabinovitz",
   prefilledMessage: "היי יונתן, אשמח לשמוע על מופע לאירוע שלי 🃏",
 } as const;
 
@@ -171,14 +172,36 @@ export const sleeve = {
 export const moments = {
   title: "גלריה",
   items: [
-    { type: "image", src: assets.stage },
+    { type: "image", src: assets.galleryB },
     { type: "image", src: assets.galleryA },
     { type: "image", src: assets.ted1 },
     { type: "image", src: assets.audience2 },
-    { type: "image", src: assets.galleryB },
     { type: "image", src: assets.playful },
+    { type: "image", src: assets.stage },
   ],
 } as const satisfies { title: string; items: readonly GalleryItem[] };
+
+export const videos = {
+  title: "סרטונים",
+  cta: "רוצים לראות עוד?",
+  items: [
+    {
+      id: "1218827627",
+      poster:
+        "https://i.vimeocdn.com/video/2190872012-beece355f8a36c230c3816221b1587fb3af835b06b7b5b965d0a74e5a4dc87e5-d_360x640",
+    },
+    {
+      id: "1218827659",
+      poster:
+        "https://i.vimeocdn.com/video/2190872026-50cf25e0c69e556795a059758b9bead0fb33e3aa568b2be0c2842714c0aeb4c8-d_360x640",
+    },
+    {
+      id: "1218827628",
+      poster:
+        "https://i.vimeocdn.com/video/2190872005-817671b89de93b3df02f189bcd5dfd7f38236d05f8df80332fb89eb75055876a-d_360x640",
+    },
+  ],
+} as const;
 
 export const puzzle = {
   title: "חידה קטנה עד שניפגש",

@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import SleeveSection from "@/components/SleeveSection";
+import VideosSection from "@/components/VideosSection";
 import MomentsSection from "@/components/MomentsSection";
 import PuzzleSection from "@/components/PuzzleSection";
 import ContactForm from "@/components/ContactForm";
@@ -15,6 +16,7 @@ export default function Home() {
       <HeroSection />
       <AboutSection />
       <SleeveSection />
+      <VideosSection />
       <MomentsSection />
       <PuzzleSection />
       <ContactForm />
