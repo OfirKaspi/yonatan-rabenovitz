@@ -130,6 +130,19 @@ h3 {
   animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
 }
 
+.accordion-collapse {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.accordion-collapse[data-open="true"] {
+  grid-template-rows: 1fr;
+}
+.accordion-collapse-inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
 /* ---------------------------------------------------------------------------
    Accessibility widget — applied from כלי נגישות (localStorage).
 --------------------------------------------------------------------------- */

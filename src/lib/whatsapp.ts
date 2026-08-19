@@ -1,5 +1,5 @@
 import { contact } from "@/content/site";
 
-export function whatsappHref() {
-  return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(contact.prefilledMessage)}`;
+export function whatsappHref(message: string = contact.prefilledMessage) {
+  return `https://wa.me/${contact.whatsappNumber}?text=${encodeURIComponent(message)}`;
 }

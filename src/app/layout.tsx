@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Heebo, Rubik } from "next/font/google";
 import AccessibilityWidget from "@/components/legal/AccessibilityWidget";
+import { assets, brand } from "@/content/site";
 import "./globals.css";
 
 const heebo = Heebo({
@@ -15,10 +16,19 @@ const rubik = Rubik({
   weight: ["600", "700", "800", "900"],
 });
 
+const title = `${brand.name} | ${brand.role}`;
+const description =
+  "יונתן רבינוביץ', אמן קלפים, חי במרחב השראה בלב המדבר - מצפה רמון.";
+const ogImage = {
+  url: assets.og,
+  width: 1254,
+  height: 1254,
+  alt: brand.name,
+};
+
 export const metadata: Metadata = {
-  title: "יונתן רבינוביץ' | אמן קלפים",
-  description:
-    "יונתן רבינוביץ', אמן קלפים, חי במרחב השראה בלב המדבר - מצפה רמון.",
+  title,
+  description,
   keywords: [
     "יונתן רבינוביץ'",
     "אמן קלפים",
@@ -27,7 +37,20 @@ export const metadata: Metadata = {
     "סודות הקוסם - סדנת קסמים",
     "שיעורים פרטיים",
   ],
-  authors: [{ name: "יונתן רבינוביץ'" }],
+  authors: [{ name: brand.name }],
+  openGraph: {
+    title,
+    description,
+    locale: "he_IL",
+    type: "website",
+    images: [ogImage],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title,
+    description,
+    images: [ogImage],
+  },
 };
 
 export const viewport: Viewport = {

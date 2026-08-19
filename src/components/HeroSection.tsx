@@ -67,7 +67,7 @@ export default function HeroSection() {
             </a>
             <a
               href="#sleeve"
-              className="inline-flex items-center gap-2 text-base font-display font-bold tracking-wide text-sand-50 underline decoration-gold-400 decoration-2 underline-offset-8 transition-colors hover:text-gold-400"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-display font-bold tracking-wide text-ink-900 transition-transform hover:-translate-y-0.5"
             >
               {hero.ctaSecondary}
             </a>
