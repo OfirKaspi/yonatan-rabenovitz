@@ -14,7 +14,7 @@ export default function AboutSection() {
             className="relative aspect-4/5 overflow-hidden rounded-3xl md:sticky md:top-28"
           >
             <Image
-              src={assets.craft}
+              src={assets.stage}
               alt={brand.name}
               fill
               sizes="(max-width: 768px) 90vw, 40vw"

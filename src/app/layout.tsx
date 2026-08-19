@@ -18,7 +18,7 @@ const rubik = Rubik({
 
 const title = `${brand.name} | ${brand.role}`;
 const description =
-  "יונתן רבינוביץ', אמן קלפים, חי במרחב השראה בלב המדבר - מצפה רמון.";
+  "יונתן רבינוביץ', אמן קלפים, חי במרחב השראה בלב המרכז - תל אביב.";
 const ogImage = {
   url: assets.og,
   width: 1254,

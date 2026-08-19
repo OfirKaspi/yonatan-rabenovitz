@@ -5,11 +5,11 @@
  * https://yonatanrabenovitz.wixsite.com/magic — nothing is invented.
  */
 
-const CLOUD = "https://res.cloudinary.com/dudwjf2pu/image/upload";
+import type { GalleryItem } from "@/lib/gallery";
 
-export function cld(transform: string, url: string): string {
-  return url.replace("/image/upload/", `/image/upload/${transform}/`);
-}
+export { cld } from "@/lib/gallery";
+
+const CLOUD = "https://res.cloudinary.com/dudwjf2pu/image/upload";
 
 export const assets = {
   logo: `${CLOUD}/v1786951970/LevelUp/yonatan-rabenovitz/WhatsApp_Image_2026-08-04_at_19.13.38_dbt55r.jpg`,
@@ -25,6 +25,7 @@ export const assets = {
   audience2: `${CLOUD}/v1786952013/LevelUp/yonatan-rabenovitz/WhatsApp_Image_2026-08-04_at_19.18.10_4_tsbdzr.jpg`,
   galleryA: `${CLOUD}/v1787154398/LevelUp/yonatan-rabenovitz/41915ca3-0728-4669-8ea5-f59006eea5ec_gp0dev.jpg`,
   galleryB: `${CLOUD}/v1787154402/LevelUp/yonatan-rabenovitz/8ae44163-f366-49fa-b4ba-97ea9e48e58f_l9c31o.jpg`,
+  workshop: `${CLOUD}/v1787154400/LevelUp/yonatan-rabenovitz/554cbed5-3878-4359-b59b-d6f5797f3ae7_anqazq.jpg`,
   og: `${CLOUD}/v1787154398/LevelUp/yonatan-rabenovitz/1a3a6490-ee2a-45b1-82c0-ff233717d573_yznrvk.jpg`,
 } as const;
 
@@ -79,7 +80,7 @@ export const hero = {
 export const about = {
   title: "מי אני?",
   paragraphs: [
-    "יונתן רבינוביץ', אמן קלפים, חי במרחב השראה בלב המדבר - מצפה רמון.",
+    "יונתן רבינוביץ', אמן קלפים, חי במרחב השראה בלב המרכז - תל אביב.",
     "נחשפתי לעולם הקסמים בגיל 15 ומאז פיתחתי תשוקה וחיבור עמוק מאוד ל-52 חתיכות נייר.",
     "חפיסת הקלפים מבחינתי היא כלי להתבטא, להכיר ולהתחבר לאנשים.",
     "המטרה שלי היא להפיץ טוב בעולם ולגרום לאנשים לחייך, ואין כמו תחושת הקסם, הסקרנות והפליאה שמשתקפות אלי מאנשים שאני פוגש לאורך הדרך.",
@@ -111,7 +112,7 @@ export const sleeve = {
     {
       id: "mazaltov",
       title: '"מזל טוב" - מופע קסמים ייחודי',
-      image: assets.stage,
+      image: assets.ted2,
       body: [
         "מתי בפעם האחרונה חווית קסם?",
         "אבל אמיתי מה, שהחושים וההיגיון לא מצליחים להסביר.",
@@ -130,7 +131,7 @@ export const sleeve = {
     {
       id: "workshop",
       title: "סודות הקוסם - סדנת קסמים",
-      image: assets.playful,
+      image: assets.workshop,
       body: [
         'בסדנת "סודות הקוסם" אני פותח את הדלת לעולם הקסמים ומעניק הצצה בלעדית לאחורי הקלעים שלנו, הקוסמים.',
         'הסדנה כוללת מופע קסמים קצר ולאחריו הדרכה ולמידה של מספר קסמים, עקרונות מנחים ושיחה פתוחה - מהי אגודת הקוסמים? למה קוסמים לא מגלים את הקסמים שלהם? וכל מה שרציתם לשאול (חוץ מ"איך עושים את הקסם הזה?" סתם, בסדנה הזו מותר לשאול את זה).',
@@ -169,15 +170,15 @@ export const sleeve = {
 
 export const moments = {
   title: "גלריה",
-  images: [
-    { src: assets.stage },
-    { src: assets.galleryA },
-    { src: assets.ted1 },
-    { src: assets.audience2 },
-    { src: assets.galleryB },
-    { src: assets.playful },
+  items: [
+    { type: "image", src: assets.stage },
+    { type: "image", src: assets.galleryA },
+    { type: "image", src: assets.ted1 },
+    { type: "image", src: assets.audience2 },
+    { type: "image", src: assets.galleryB },
+    { type: "image", src: assets.playful },
   ],
-} as const;
+} as const satisfies { title: string; items: readonly GalleryItem[] };
 
 export const puzzle = {
   title: "חידה קטנה עד שניפגש",
