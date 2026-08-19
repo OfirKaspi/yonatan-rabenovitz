@@ -18,6 +18,7 @@ export function useDraggable({
   const [position, setPosition] = useState<{ x: number; y: number } | null>(
     null,
   );
+  const [dragging, setDragging] = useState(false);
 
   const isDragging = useRef(false);
   const wasDragged = useRef(false);
@@ -57,6 +58,7 @@ export function useDraggable({
 
   const handleMouseUp = () => {
     isDragging.current = false;
+    setDragging(false);
     document.body.style.userSelect = "";
     window.removeEventListener("mousemove", handleMouseMove);
     window.removeEventListener("mouseup", handleMouseUp);
@@ -64,9 +66,11 @@ export function useDraggable({
 
   const handleMouseDown = (e: React.MouseEvent<HTMLElement>) => {
     if (disabled) return;
+    e.preventDefault();
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     isDragging.current = true;
     wasDragged.current = false;
+    setDragging(true);
 
     document.body.style.userSelect = "none";
     startPoint.current = { x: e.clientX, y: e.clientY };
@@ -113,6 +117,7 @@ export function useDraggable({
 
   const handleTouchEnd = () => {
     isDragging.current = false;
+    setDragging(false);
     document.body.style.userSelect = "";
     window.removeEventListener("touchmove", handleTouchMove);
     window.removeEventListener("touchend", handleTouchEnd);
@@ -127,6 +132,7 @@ export function useDraggable({
 
     isDragging.current = true;
     wasDragged.current = false;
+    setDragging(true);
 
     document.body.style.userSelect = "none";
     startPoint.current = { x: touch.clientX, y: touch.clientY };
@@ -154,6 +160,6 @@ export function useDraggable({
     handleMouseDown,
     handleTouchStart,
     wasDragged,
-    isDragging: isDragging.current,
+    isDragging: dragging,
   };
 }

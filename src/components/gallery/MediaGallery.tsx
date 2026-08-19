@@ -59,6 +59,7 @@ export default function MediaGallery({
                 type="button"
                 aria-pressed={selectedThumb}
                 aria-label={altFor(item)}
+                onPointerDown={() => setSelectedIndex(i)}
                 onClick={() => setSelectedIndex(i)}
                 className={cn(
                   "group relative block aspect-square w-20 overflow-hidden rounded-2xl md:w-28",

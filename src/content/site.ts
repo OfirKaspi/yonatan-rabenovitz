@@ -27,7 +27,10 @@ export const assets = {
   audience2: `${CLOUD}/v1786952013/LevelUp/yonatan-rabenovitz/WhatsApp_Image_2026-08-04_at_19.18.10_4_tsbdzr.jpg`,
   galleryA: `${CLOUD}/v1787154398/LevelUp/yonatan-rabenovitz/41915ca3-0728-4669-8ea5-f59006eea5ec_gp0dev.jpg`,
   galleryB: `${CLOUD}/v1787154402/LevelUp/yonatan-rabenovitz/8ae44163-f366-49fa-b4ba-97ea9e48e58f_l9c31o.jpg`,
+  galleryC: `${CLOUD}/v1787154399/LevelUp/yonatan-rabenovitz/010b2385-7a4a-423b-8557-7b36de3eebcb_htfdxu.jpg`,
+  galleryD: `${CLOUD}/v1787154400/LevelUp/yonatan-rabenovitz/080d549f-85c5-4c40-bf70-57a980885263_iobgxc.jpg`,
   workshop: `${CLOUD}/v1787154400/LevelUp/yonatan-rabenovitz/554cbed5-3878-4359-b59b-d6f5797f3ae7_anqazq.jpg`,
+  lessons: `${CLOUD}/v1787158874/LevelUp/yonatan-rabenovitz/1969fe9b-cbe4-4299-8fbb-c35978282f11_qnkmbd.jpg`,
   og: `${CLOUD}/v1787154398/LevelUp/yonatan-rabenovitz/1a3a6490-ee2a-45b1-82c0-ff233717d573_yznrvk.jpg`,
   logoAnimation: `${CLOUDINARY_VIDEO_BASE}/v1787157830/LevelUp/yonatan-rabenovitz/logo-animation-loop.mp4`,
 } as const;
@@ -154,7 +157,7 @@ export const sleeve = {
     {
       id: "lessons",
       title: "שיעורים פרטיים",
-      image: assets.craft,
+      image: assets.lessons,
       body: [
         "אם מעניין אותך להתעמק בעולם הקסמים, ללמוד לשלוט בקלפים ולעשות דברים שידהימו אנשים - הגעת למקום הנכון.",
         "השיעורים פרטיים ומותאמים אישית לכל תלמיד/ה, במהלכם נלמד תיאוריה, נבנה בסיס טכני חזק ונרכוש עקרונות נכונים לעבודה עם קלפים.",
@@ -182,8 +185,8 @@ export const moments = {
     { type: "image", src: assets.galleryA },
     { type: "image", src: assets.ted1 },
     { type: "image", src: assets.audience2 },
-    { type: "image", src: assets.playful },
-    { type: "image", src: assets.stage },
+    { type: "image", src: assets.galleryC },
+    { type: "image", src: assets.galleryD },
   ],
 } as const satisfies { title: string; items: readonly GalleryItem[] };
 

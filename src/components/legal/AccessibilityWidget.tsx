@@ -3,11 +3,10 @@
 import { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
 import { Accessibility, Minus, Plus, RefreshCw, X } from "lucide-react";
-import { useDraggable } from "@/hooks/useDraggable";
-import { cn } from "@/lib/cn";
+import FloatingFab from "@/components/FloatingFab";
+import { FAB_SIZE } from "@/lib/fab";
 
 const STORAGE_KEY = "accessibility-settings";
-const SIZE = 52;
 
 interface AccessibilitySettings {
   fontSize: number;
@@ -63,31 +62,12 @@ function applySettings(settings: AccessibilitySettings) {
 }
 
 export default function AccessibilityWidget() {
-  const [initialPosition, setInitialPosition] = useState<{
-    x: number;
-    y: number;
-  } | null>(null);
   const [settings, setSettings] = useState<AccessibilitySettings>(
     defaultSettings,
   );
   const [hydrated, setHydrated] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
   const overlayRef = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    setInitialPosition({
-      x: 8,
-      y: window.innerHeight - SIZE - 8,
-    });
-  }, []);
-
-  const { position, handleMouseDown, handleTouchStart, wasDragged, isDragging } =
-    useDraggable({
-      size: SIZE,
-      initialPosition,
-      disabled: isOpen,
-    });
 
   useEffect(() => {
     const stored = parseSettings(localStorage.getItem(STORAGE_KEY));
@@ -106,12 +86,6 @@ export default function AccessibilityWidget() {
     }
   }, [hydrated, settings]);
 
-  useEffect(() => {
-    if (position) setIsVisible(true);
-  }, [position]);
-
-  if (!position) return null;
-
   const updateSetting = (
     key: keyof AccessibilitySettings,
     value: boolean | number,
@@ -121,32 +95,23 @@ export default function AccessibilityWidget() {
 
   return (
     <>
-      <div
-        data-a11y-chrome=""
-        onMouseDown={handleMouseDown}
-        onTouchStart={handleTouchStart}
-        className={cn(
-          "fixed z-50 rounded-full select-none",
-          isDragging ? "cursor-grabbing" : "cursor-grab active:cursor-grabbing",
-          isDragging ? "" : "transition-all duration-500 ease-out",
-          isVisible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0",
+      <FloatingFab indexFromBottom={0} disabled={isOpen} chrome>
+        {({ wasDragged }) => (
+          <button
+            type="button"
+            onClick={() => {
+              if (!wasDragged.current) setIsOpen((open) => !open);
+            }}
+            className="flex items-center justify-center rounded-full bg-blue-600 text-white shadow-lg shadow-ink-900/20 transition-colors hover:bg-blue-700"
+            aria-label="כלי נגישות"
+            aria-haspopup="dialog"
+            aria-expanded={isOpen}
+            style={{ width: FAB_SIZE, height: FAB_SIZE }}
+          >
+            <Accessibility size={22} aria-hidden="true" />
+          </button>
         )}
-        style={{ left: position.x, top: position.y }}
-      >
-        <button
-          type="button"
-          onClick={() => {
-            if (!wasDragged.current) setIsOpen((open) => !open);
-          }}
-          className="flex items-center justify-center rounded-full border border-gold-400 bg-ink-900 text-sand-50 shadow-lg shadow-ink-900/20 transition-colors hover:bg-ink-700"
-          aria-label="כלי נגישות"
-          aria-haspopup="dialog"
-          aria-expanded={isOpen}
-          style={{ width: SIZE, height: SIZE }}
-        >
-          <Accessibility size={22} aria-hidden="true" />
-        </button>
-      </div>
+      </FloatingFab>
 
       {isOpen &&
         createPortal(

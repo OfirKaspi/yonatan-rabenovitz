@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import OptimizedImage from "@/components/OptimizedImage";
+import MediaSpinner from "@/components/MediaSpinner";
 import { Play } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import InstagramIcon from "@/components/InstagramIcon";
@@ -24,9 +25,18 @@ function vimeoSrc(id: string, { autoplay, muted }: { autoplay: boolean; muted: b
 export default function VideosSection() {
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [muted, setMuted] = useState(true);
+  const [readyKey, setReadyKey] = useState("");
   const selected = videos.items[selectedIndex];
 
   if (!selected) return null;
+
+  const playerKey = `${selected.id}-${muted}`;
+  const playerReady = readyKey === playerKey;
+
+  const selectVideo = (i: number) => {
+    setSelectedIndex(i);
+    setMuted(false);
+  };
 
   return (
     <section id="videos" className="scroll-mt-28 bg-sand-50 py-20 md:py-32">
@@ -39,13 +49,25 @@ export default function VideosSection() {
 
         <div className="mx-auto w-full max-w-sm md:max-w-md">
         <Reveal variant="mask" className="relative aspect-9/16 overflow-hidden rounded-3xl">
+          <OptimizedImage
+            src={selected.poster}
+            alt=""
+            fill
+            priority
+            className="object-cover"
+          />
+          {playerReady ? null : <MediaSpinner />}
           <iframe
-            key={`${selected.id}-${muted}`}
+            key={playerKey}
             src={vimeoSrc(selected.id, { autoplay: true, muted })}
             title={brand.name}
             allow="autoplay; fullscreen; picture-in-picture"
             allowFullScreen
-            className="absolute inset-0 h-full w-full border-0"
+            onLoad={() => setReadyKey(playerKey)}
+            className={cn(
+              "absolute inset-0 h-full w-full border-0",
+              playerReady ? "opacity-100" : "opacity-0",
+            )}
           />
         </Reveal>
 
@@ -59,10 +81,8 @@ export default function VideosSection() {
                   type="button"
                   aria-pressed={selectedThumb}
                   aria-label={brand.name}
-                  onClick={() => {
-                    setSelectedIndex(i);
-                    setMuted(false);
-                  }}
+                  onPointerDown={() => selectVideo(i)}
+                  onClick={() => selectVideo(i)}
                   className={cn(
                     "group relative block aspect-9/16 w-full overflow-hidden rounded-2xl",
                     selectedThumb

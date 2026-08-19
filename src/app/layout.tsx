@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Heebo, Rubik } from "next/font/google";
 import AccessibilityWidget from "@/components/legal/AccessibilityWidget";
+import FloatingWhatsApp from "@/components/FloatingWhatsApp";
 import { assets, brand } from "@/content/site";
 import "./globals.css";
 
@@ -71,6 +72,7 @@ export default function RootLayout({
     >
       <body className="bg-sand-50 text-ink-900 min-h-screen flex flex-col font-sans antialiased">
         {children}
+        <FloatingWhatsApp />
         <AccessibilityWidget />
       </body>
     </html>

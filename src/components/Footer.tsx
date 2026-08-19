@@ -31,7 +31,6 @@ export default function Footer() {
                 {brand.name}
               </span>
             </div>
-            <p className="mt-4 text-ink-700">{brand.role}</p>
             <ul className="mt-5 flex items-center gap-2">
               {socials.map((social) => (
                 <li key={social.label}>
