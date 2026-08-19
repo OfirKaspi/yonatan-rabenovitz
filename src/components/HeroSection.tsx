@@ -2,9 +2,9 @@
 
 import { useEffect, useState } from "react";
 import Image from "next/image";
-import { ArrowLeft } from "lucide-react";
 import { whatsappHref } from "@/lib/whatsapp";
 import { hero, assets, brand, cld } from "@/content/site";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 const heroImage = cld(
   "c_fill,g_auto,w_2400,q_auto:best,e_sharpen:80,f_auto",
@@ -33,8 +33,8 @@ export default function HeroSection() {
       <div className="absolute inset-x-0 bottom-0 h-28 bg-linear-to-t from-sand-50 to-transparent md:h-36" />
 
       <div className="relative z-10 mx-auto flex min-h-svh max-w-6xl items-center px-5 pt-28 pb-16 md:px-8 md:pb-24">
-        <div className="hero-copy max-w-3xl">
-          <h1 className="font-display text-6xl text-sand-50 sm:text-7xl md:text-8xl">
+        <div className="max-w-3xl">
+          <h1 className="hero-copy font-display text-6xl text-sand-50 sm:text-7xl md:text-8xl">
             <span
               className="rise block"
               data-revealed={revealed}
@@ -60,10 +60,10 @@ export default function HeroSection() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-sand-50 px-7 py-3.5 text-base font-bold text-ink-900 shadow-lg shadow-ink-900/40 transition-transform hover:-translate-y-0.5"
+              className="inline-flex items-center gap-2 rounded-full bg-whatsapp px-7 py-3.5 text-base font-bold text-white transition-transform hover:-translate-y-0.5"
             >
+              <WhatsAppIcon className="h-5 w-5" />
               {hero.ctaPrimary}
-              <ArrowLeft size={18} />
             </a>
             <a
               href="#sleeve"

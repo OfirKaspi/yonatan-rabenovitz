@@ -6,6 +6,7 @@ import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/cn";
 import { whatsappHref } from "@/lib/whatsapp";
 import { puzzle, contactSection } from "@/content/site";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 interface Point {
   x: number;
@@ -171,8 +172,9 @@ export default function PuzzleSection() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-8 inline-flex rounded-full border border-gold-400 bg-ink-900 px-6 py-3 text-base font-semibold text-sand-50 transition-transform hover:-translate-y-0.5"
+              className="mt-8 inline-flex items-center gap-2 rounded-full bg-whatsapp px-6 py-3 text-base font-bold text-white transition-transform hover:-translate-y-0.5"
             >
+              <WhatsAppIcon className="h-5 w-5" />
               {contactSection.title}
             </a>
           )}

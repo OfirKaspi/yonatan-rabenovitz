@@ -30,6 +30,7 @@ export const contact = {
   phoneDisplay: "054-9383155",
   phoneHref: "tel:+972549383155",
   email: "Yonatan.rabenovitz@gmail.com",
+  prefilledMessage: "היי יונתן, אשמח לשמוע על מופע לאירוע שלי 🃏",
 } as const;
 
 export const brand = {

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import Logo from "@/components/Logo";
+import WhatsAppIcon from "@/components/WhatsAppIcon";
 import { cn } from "@/lib/cn";
 import { whatsappHref } from "@/lib/whatsapp";
 import { brand, navLinks, contactSection } from "@/content/site";
@@ -72,13 +73,9 @@ export default function Navbar() {
           href={whatsappHref()}
           target="_blank"
           rel="noopener noreferrer"
-          className={cn(
-            "hidden rounded-full px-5 py-2.5 text-sm font-bold transition-colors md:inline-flex",
-            scrolled
-              ? "border border-gold-400 bg-ink-900 text-sand-50 hover:bg-ink-700"
-              : "bg-sand-50 text-ink-900 hover:bg-gold-400",
-          )}
+          className="hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-bold text-white transition-transform hover:-translate-y-0.5 md:inline-flex"
         >
+          <WhatsAppIcon className="h-4 w-4" />
           {contactSection.title}
         </a>
 
@@ -114,8 +111,9 @@ export default function Navbar() {
                 href={whatsappHref()}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center rounded-full border border-gold-400 bg-ink-900 px-5 py-3 text-base font-semibold text-sand-50"
+                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 text-base font-bold text-white"
               >
+                <WhatsAppIcon className="h-5 w-5" />
                 {contactSection.title}
               </a>
             </li>
