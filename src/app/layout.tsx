@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Heebo, Rubik } from "next/font/google";
+import AccessibilityWidget from "@/components/legal/AccessibilityWidget";
 import "./globals.css";
 
 const heebo = Heebo({
@@ -47,6 +48,7 @@ export default function RootLayout({
     >
       <body className="bg-sand-50 text-ink-900 min-h-screen flex flex-col font-sans antialiased">
         {children}
+        <AccessibilityWidget />
       </body>
     </html>
   );

@@ -39,11 +39,32 @@ export const brand = {
 } as const;
 
 export const navLinks = [
-  { label: "מי אני?", href: "#about" },
-  { label: "מה יש לי בשרוול?", href: "#sleeve" },
-  { label: "חידה קטנה עד שניפגש", href: "#puzzle" },
-  { label: "בואו נדבר", href: "#contact" },
+  { label: "מי אני?", href: "/#about" },
+  { label: "מה יש לי בשרוול?", href: "/#sleeve" },
+  { label: "חידה קטנה עד שניפגש", href: "/#puzzle" },
+  { label: "בואו נדבר", href: "/#contact" },
 ] as const;
+
+export const agency = {
+  name: "The Level Up Agency",
+  year: 2026,
+  href: "https://thelevelupagency.com",
+  services: "בניית אתרים · שיווק · כתיבה",
+} as const;
+
+export const legal = {
+  privacy: {
+    label: "מדיניות פרטיות",
+    href: "/privacy",
+    title: "מדיניות פרטיות",
+  },
+  accessibility: {
+    label: "הצהרת נגישות",
+    href: "/accessibility",
+    title: "הצהרת נגישות",
+  },
+  formConsent: "שליחה מהווה הסכמה למדיניות הפרטיות",
+} as const;
 
 export const hero = {
   headlineLead: "יונתן רבינוביץ'",

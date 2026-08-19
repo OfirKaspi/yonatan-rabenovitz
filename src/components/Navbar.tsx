@@ -8,22 +8,28 @@ import { cn } from "@/lib/cn";
 import { whatsappHref } from "@/lib/whatsapp";
 import { brand, navLinks, contactSection } from "@/content/site";
 
-export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false);
+type NavbarProps = {
+  variant?: "overlay" | "solid";
+};
+
+export default function Navbar({ variant = "overlay" }: NavbarProps) {
+  const [scrolled, setScrolled] = useState(variant === "solid");
   const [open, setOpen] = useState(false);
+  const solid = variant === "solid" || scrolled;
 
   useEffect(() => {
+    if (variant === "solid") return;
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [variant]);
 
   return (
     <header
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-colors duration-500",
-        scrolled
+        solid
           ? "bg-sand-50/95 border-b border-gold-400/40 backdrop-blur-sm"
           : "bg-transparent border-b border-transparent",
       )}
@@ -31,10 +37,10 @@ export default function Navbar() {
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-8">
         {/* Brand */}
         <a
-          href="#top"
+          href={variant === "solid" ? "/" : "#top"}
           className={cn(
             "flex items-center gap-3 transition-colors hover:text-gold-400",
-            scrolled ? "text-ink-900" : "text-sand-50",
+            solid ? "text-ink-900" : "text-sand-50",
           )}
         >
           <Logo className="h-8 w-auto" />
@@ -43,7 +49,7 @@ export default function Navbar() {
             <span
               className={cn(
                 "text-[11px] font-medium tracking-widest",
-                scrolled ? "text-ink-500" : "text-sand-50/80",
+                solid ? "text-ink-500" : "text-sand-50/80",
               )}
             >
               {brand.role}
@@ -59,7 +65,7 @@ export default function Navbar() {
                 href={link.href}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-gold-400",
-                  scrolled ? "text-ink-700" : "text-sand-50",
+                  solid ? "text-ink-700" : "text-sand-50",
                 )}
               >
                 {link.label}
@@ -83,7 +89,7 @@ export default function Navbar() {
         <button
           type="button"
           onClick={() => setOpen((v) => !v)}
-          className={cn("md:hidden", scrolled ? "text-ink-900" : "text-sand-50")}
+          className={cn("md:hidden", solid ? "text-ink-900" : "text-sand-50")}
           aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
           aria-expanded={open}
         >

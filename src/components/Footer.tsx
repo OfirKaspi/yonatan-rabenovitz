@@ -1,5 +1,5 @@
 import Logo from "@/components/Logo";
-import { brand, contact, navLinks } from "@/content/site";
+import { agency, brand, contact, legal, navLinks } from "@/content/site";
 
 export default function Footer() {
   return (
@@ -47,8 +47,36 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="mt-12 border-t border-sand-200 pt-6 text-sm text-ink-500">
-          <p>© {brand.name}</p>
+        <div className="mt-12 flex flex-col gap-4 border-t border-sand-200 pt-6 text-sm text-ink-500 md:flex-row md:items-end md:justify-between">
+          <a
+            href={agency.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="transition-colors hover:text-gold-600"
+          >
+            <p>© {agency.name} {agency.year}</p>
+            <p className="mt-1">{agency.services}</p>
+          </a>
+          <nav aria-label="מידע משפטי">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2">
+              <li>
+                <a
+                  href={legal.privacy.href}
+                  className="transition-colors hover:text-gold-600"
+                >
+                  {legal.privacy.label}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={legal.accessibility.href}
+                  className="transition-colors hover:text-gold-600"
+                >
+                  {legal.accessibility.label}
+                </a>
+              </li>
+            </ul>
+          </nav>
         </div>
       </div>
     </footer>

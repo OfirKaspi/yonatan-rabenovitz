@@ -131,6 +131,54 @@ h3 {
 }
 
 /* ---------------------------------------------------------------------------
+   Accessibility widget — applied from כלי נגישות (localStorage).
+--------------------------------------------------------------------------- */
+html.accessibility-readable-font,
+html.accessibility-readable-font * {
+  font-family: Arial, "Open Sans", sans-serif !important;
+}
+
+html.accessibility-underline-links a {
+  text-decoration: underline !important;
+}
+
+html.accessibility-reduce-motion *,
+html.accessibility-reduce-motion *::before,
+html.accessibility-reduce-motion *::after {
+  animation: none !important;
+  transition: none !important;
+  scroll-behavior: auto !important;
+}
+
+html.contrast-mode *:not([data-a11y-chrome], [data-a11y-chrome] *) {
+  background: none !important;
+  background-color: #fff !important;
+  color: #000 !important;
+  box-shadow: none !important;
+  text-shadow: none !important;
+  border-color: #000 !important;
+}
+
+html.contrast-mode a:not([data-a11y-chrome] a) {
+  text-decoration: underline !important;
+  color: #0000ee !important;
+}
+
+html.contrast-mode button:not([data-a11y-chrome] button),
+html.contrast-mode input:not([data-a11y-chrome] input),
+html.contrast-mode select,
+html.contrast-mode textarea {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #000 !important;
+}
+
+html.contrast-mode img,
+html.contrast-mode video {
+  filter: grayscale(1) contrast(1.2);
+}
+
+/* ---------------------------------------------------------------------------
    Accessibility — respect reduced motion. Reveals resolve instantly.
 --------------------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {

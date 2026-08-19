@@ -9,7 +9,7 @@ import { Check } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/cn";
 import { whatsappHref } from "@/lib/whatsapp";
-import { contactSection, contact, assets, sleeve, brand } from "@/content/site";
+import { contactSection, contact, assets, sleeve, brand, legal } from "@/content/site";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 const formSchema = z.object({
@@ -210,6 +210,14 @@ export default function ContactForm() {
                   >
                     {contactSection.title}
                   </button>
+                  <p className="text-center text-sm text-ink-500">
+                    <a
+                      href={legal.privacy.href}
+                      className="transition-colors hover:text-gold-600"
+                    >
+                      {legal.formConsent}
+                    </a>
+                  </p>
                 </form>
               )}
             </div>
