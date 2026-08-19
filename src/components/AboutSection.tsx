@@ -25,7 +25,7 @@ export default function AboutSection() {
 
         <div className="md:col-span-7 md:pt-8">
           <Reveal>
-            <h2 className="font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-6xl">
+            <h2 className="text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-start md:text-6xl">
               {about.title}
             </h2>
           </Reveal>

@@ -1,25 +1,118 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import Image from "next/image";
+import useEmblaCarousel from "embla-carousel-react";
+import Autoplay from "embla-carousel-autoplay";
 import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/cn";
 import { sleeve } from "@/content/site";
 
 export default function SleeveSection() {
   const [active, setActive] = useState<string>(sleeve.items[0].id);
+  const [slide, setSlide] = useState(0);
+  const [autoplay] = useState(() =>
+    Autoplay({ delay: 4000, stopOnInteraction: false, stopOnMouseEnter: true }),
+  );
   const activeItem = sleeve.items.find((i) => i.id === active) ?? sleeve.items[0];
+
+  const [emblaRef, emblaApi] = useEmblaCarousel(
+    {
+      loop: true,
+      direction: "rtl",
+      align: "start",
+      dragFree: false,
+      watchDrag: true,
+    },
+    [autoplay],
+  );
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return;
+    setSlide(emblaApi.selectedScrollSnap());
+  }, [emblaApi]);
+
+  useEffect(() => {
+    if (!emblaApi) return;
+    onSelect();
+    emblaApi.on("select", onSelect);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      emblaApi.plugins().autoplay?.stop();
+    }
+    return () => {
+      emblaApi.off("select", onSelect);
+    };
+  }, [emblaApi, onSelect]);
 
   return (
     <section id="sleeve" className="bg-sand-100 py-20 md:py-32">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <Reveal>
-          <h2 className="mb-12 max-w-2xl font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:mb-16 md:text-6xl">
+          <h2 className="mb-12 text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:mb-16 md:text-6xl">
             {sleeve.title}
           </h2>
         </Reveal>
 
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-12 md:gap-10">
+        <div className="md:hidden" dir="rtl">
+          <div
+            className="cursor-grab overflow-hidden active:cursor-grabbing"
+            ref={emblaRef}
+          >
+            <div className="flex touch-pan-y">
+              {sleeve.items.map((item, i) => (
+                <article
+                  key={item.id}
+                  className="min-w-0 flex-[0_0_100%] select-none"
+                >
+                  <div className="relative aspect-4/5 overflow-hidden rounded-3xl">
+                    <Image
+                      src={item.image}
+                      alt={item.title}
+                      fill
+                      draggable={false}
+                      sizes="90vw"
+                      className="pointer-events-none object-cover"
+                      priority={i === 0}
+                    />
+                  </div>
+                  <div className="mt-5 flex items-baseline gap-4">
+                    <span className="text-sm font-medium tracking-wider tabular-nums text-gold-600">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <h3 className="font-display font-bold text-2xl text-ink-900">
+                      {item.title}
+                    </h3>
+                  </div>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div
+            className="mt-6 flex justify-center gap-2"
+            role="tablist"
+            aria-label={sleeve.title}
+          >
+            {sleeve.items.map((item, i) => (
+              <button
+                key={item.id}
+                type="button"
+                role="tab"
+                aria-selected={slide === i}
+                aria-label={item.title}
+                onClick={() => emblaApi?.scrollTo(i)}
+                className={cn(
+                  "h-2 rounded-full transition-all",
+                  slide === i
+                    ? "w-6 bg-gold-500"
+                    : "w-2 bg-sand-300 hover:bg-sand-200",
+                )}
+              />
+            ))}
+          </div>
+        </div>
+
+        <div className="hidden md:grid md:grid-cols-12 md:gap-10">
           <ul className="md:col-span-7">
             {sleeve.items.map((item, i) => {
               const isActive = item.id === active;
@@ -55,21 +148,12 @@ export default function SleeveSection() {
                       </span>
                     </span>
                   </button>
-                  <div className="relative mt-3 aspect-video overflow-hidden rounded-3xl md:hidden">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      sizes="90vw"
-                      className="object-cover"
-                    />
-                  </div>
                 </li>
               );
             })}
           </ul>
 
-          <div className="hidden md:col-span-5 md:block">
+          <div className="md:col-span-5">
             <div className="sticky top-28">
               <div className="relative aspect-4/5 overflow-hidden rounded-3xl">
                 <Image

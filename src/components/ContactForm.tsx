@@ -1,10 +1,11 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import Image from "next/image";
+import { Check } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/cn";
 import { whatsappHref } from "@/lib/whatsapp";
@@ -24,6 +25,7 @@ type FormValues = z.infer<typeof formSchema>;
 export default function ContactForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [showToast, setShowToast] = useState(false);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
   const {
@@ -53,6 +55,7 @@ export default function ContactForm() {
       });
       if (!res.ok) throw new Error();
       setIsSubmitted(true);
+      setShowToast(true);
       reset();
     } catch (err) {
       setErrorMessage(contact.phoneDisplay);
@@ -60,6 +63,12 @@ export default function ContactForm() {
       setIsSubmitting(false);
     }
   };
+
+  useEffect(() => {
+    if (!showToast) return;
+    const t = window.setTimeout(() => setShowToast(false), 5000);
+    return () => window.clearTimeout(t);
+  }, [showToast]);
 
   const fieldBase =
     "w-full rounded-2xl border bg-sand-50 px-4 py-3 text-ink-900 placeholder:text-ink-500/60 transition-colors focus:border-gold-500 focus:bg-white focus:outline-none";
@@ -70,7 +79,7 @@ export default function ContactForm() {
         {/* Left — the invitation + WhatsApp-first */}
         <div className="md:col-span-6 md:pt-4">
           <Reveal>
-            <h2 className="font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-6xl">
+            <h2 className="text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-start md:text-6xl">
               {contactSection.title}
             </h2>
           </Reveal>
@@ -129,19 +138,14 @@ export default function ContactForm() {
             <div className="p-6 md:p-8">
               {isSubmitted ? (
                 <div className="py-10 text-center">
-                  <a
-                    href={contact.phoneHref}
-                    className="font-display font-bold text-2xl text-ink-900 transition-colors hover:text-gold-600"
-                  >
-                    {contact.phoneDisplay}
-                  </a>
-                  <p className="mt-3">
-                    <a
-                      href={`mailto:${contact.email}`}
-                      className="text-ink-700 transition-colors hover:text-gold-600"
-                    >
-                      {contact.email}
-                    </a>
+                  <div className="mx-auto mb-5 flex h-14 w-14 items-center justify-center rounded-full bg-gold-500/15 text-gold-600">
+                    <Check className="h-7 w-7" strokeWidth={2.5} aria-hidden />
+                  </div>
+                  <p className="font-display font-bold text-2xl text-ink-900">
+                    {contactSection.successTitle}
+                  </p>
+                  <p className="mt-3 text-lg text-ink-700">
+                    {contactSection.successBody}
                   </p>
                 </div>
               ) : (
@@ -212,6 +216,21 @@ export default function ContactForm() {
           </Reveal>
         </div>
       </div>
+
+      {showToast && (
+        <div
+          role="status"
+          aria-live="polite"
+          className="fixed bottom-24 left-1/2 z-50 w-[min(92vw,24rem)] -translate-x-1/2 rounded-2xl border border-sand-200 bg-ink-900 px-5 py-4 text-center shadow-lg shadow-ink-900/20 md:bottom-8"
+        >
+          <p className="font-display font-bold text-sand-50">
+            {contactSection.successTitle}
+          </p>
+          <p className="mt-1 text-sm text-sand-200">
+            {contactSection.successBody}
+          </p>
+        </div>
+      )}
     </section>
   );
 }

@@ -92,13 +92,14 @@ export const sleeve = {
 } as const;
 
 export const moments = {
+  title: "גלריה",
   images: [
-    { src: assets.stage, span: "tall" },
-    { src: assets.audience1, span: "wide" },
-    { src: assets.ted1, span: "normal" },
-    { src: assets.audience2, span: "normal" },
-    { src: assets.ted2, span: "tall" },
-    { src: assets.playful, span: "normal" },
+    { src: assets.stage },
+    { src: assets.audience1 },
+    { src: assets.ted1 },
+    { src: assets.audience2 },
+    { src: assets.ted2 },
+    { src: assets.playful },
   ],
 } as const;
 
@@ -106,8 +107,26 @@ export const puzzle = {
   title: "חידה קטנה עד שניפגש",
   instruction:
     "עליך לחבר בין כל הנקודות בעזרת 4 קווים ישרים מבלי להרים את האצבע מהמסך",
+  idlePrompt: "לחץ וגרור כדי למתוח קו",
+  linesLabel: "קווים",
+  dotsLabel: "נקודות",
+  reset: "איפוס",
+  tryAgain: "נסה שוב",
+  failLead: "נעצרת בתוך הריבוע?",
+  failBody:
+    "בקסמים ובמנטליזם, הסוד הוא לפרוץ את הגבולות! נסה למתוח את הקווים מעבר לגבולות הריבוע.",
+  successTitle: "כל הכבוד! הצלחת!",
+  successBody:
+    "מי שחושב מחוץ לקופסה מרוויח. מגיע לך שהאירוע שלך יהיה מיוחד באותה מידה.",
+  close: "סגור",
+  hintToggle: "צריך רמז?",
+  hintHide: "הסתר רמז",
+  hint:
+    "כדי לחבר את כל 9 הנקודות ב-4 קווים, חלק מהקווים חייבים להסתיים מחוץ לריבוע הדמיוני שהנקודות יוצרות!",
 } as const;
 
 export const contactSection = {
   title: "בואו נדבר",
+  successTitle: "הפרטים נשלחו בהצלחה",
+  successBody: "תודה רבה, ניצור איתך קשר בהקדם.",
 } as const;
