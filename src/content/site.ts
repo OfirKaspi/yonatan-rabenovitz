@@ -188,7 +188,7 @@ export const moments = {
     { type: "image", src: assets.galleryC },
     { type: "image", src: assets.galleryD },
   ],
-} as const satisfies { title: string; items: readonly GalleryItem[] };
+} as const satisfies { title: string; cta: string; items: readonly GalleryItem[] };
 
 export const videos = {
   title: "סרטונים",
