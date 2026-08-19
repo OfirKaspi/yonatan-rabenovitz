@@ -21,7 +21,7 @@ interface Line {
 
 const GOLD = "#b08d3a";
 const GOLD_LIGHT = "#c9a84c";
-const DOT_IDLE = "#e8d9be";
+const DOT_IDLE = "#4a433a";
 const CONFETTI_COLORS = ["#b08d3a", "#c9a84c", "#fdfbf7", "#d4bc6a", "#1a1612"];
 
 const DOTS: Point[] = [
@@ -220,7 +220,7 @@ export default function PuzzleSection() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-center gap-12 px-5 md:grid-cols-2 md:gap-16 md:px-8">
         <div className="text-right">
           <Reveal>
-            <h2 className="text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-right md:text-6xl">
+            <h2 className="title-rule title-rule-start-md text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-right md:text-6xl">
               {puzzle.title}
             </h2>
           </Reveal>
@@ -234,7 +234,7 @@ export default function PuzzleSection() {
         <Reveal>
           <div
             className={cn(
-              "relative mx-auto w-full max-w-md rounded-3xl border bg-sand-50 p-4 transition-colors sm:p-6",
+              "relative mx-auto w-full max-w-md rounded-3xl border bg-sand-100 p-4 transition-colors sm:p-6",
               state === "FAIL" && "animate-shake border-gold-500",
               state === "SUCCESS" && "border-gold-500",
               state !== "FAIL" && state !== "SUCCESS" && "border-sand-200",
@@ -280,7 +280,7 @@ export default function PuzzleSection() {
               />
 
               {state === "IDLE" && lines.length === 0 && (
-                <div className="pointer-events-none absolute inset-0 flex items-center justify-center rounded-2xl bg-sand-50/50">
+                <div className="pointer-events-none absolute inset-0 flex items-center justify-center rounded-2xl bg-sand-100/50">
                   <span className="animate-bounce rounded-full bg-ink-900 px-5 py-3 text-sm font-bold text-sand-50 shadow-xl">
                     {puzzle.idlePrompt}
                   </span>
@@ -380,7 +380,7 @@ export default function PuzzleSection() {
                     href={whatsappHref()}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3.5 text-base font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5"
+                    className="btn-lift inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3.5 text-base font-display font-bold tracking-wide text-white"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
                     {contactSection.title}

@@ -32,6 +32,7 @@
 :root {
   --background: var(--color-sand-50);
   --foreground: var(--color-ink-900);
+  --ease-out-expo: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 body {
@@ -93,7 +94,7 @@ h3 {
 --------------------------------------------------------------------------- */
 .reveal-mask {
   clip-path: inset(0 0 100% 0);
-  transition: clip-path 1s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: clip-path 1s var(--ease-out-expo);
   will-change: clip-path;
 }
 .reveal-mask[data-revealed="true"] {
@@ -104,11 +105,123 @@ h3 {
 .rise {
   opacity: 0;
   transform: translateY(0.6em);
-  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: opacity 0.7s ease, transform 0.7s var(--ease-out-expo);
 }
 .rise[data-revealed="true"] {
   opacity: 1;
   transform: translateY(0);
+}
+
+.btn-lift {
+  transition: transform 0.25s var(--ease-out-expo);
+}
+.btn-lift:hover:not(:disabled) {
+  transform: translateY(-2px);
+}
+
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+.link-underline::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: -2px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.35s var(--ease-out-expo);
+}
+.link-underline:hover::after {
+  transform: scaleX(1);
+}
+
+.media-zoom {
+  transition: transform 0.7s var(--ease-out-expo);
+}
+.group:hover .media-zoom {
+  transform: scale(1.05);
+}
+
+.title-rule::after {
+  content: "";
+  display: block;
+  width: 3.5rem;
+  height: 1px;
+  margin-top: 1rem;
+  margin-inline: auto;
+  background: var(--color-gold-500);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.7s var(--ease-out-expo);
+}
+.title-rule-start::after {
+  margin-inline-start: 0;
+  margin-inline-end: auto;
+}
+@media (min-width: 768px) {
+  .title-rule-start-md::after {
+    margin-inline-start: 0;
+    margin-inline-end: auto;
+  }
+}
+.rise[data-revealed="true"] .title-rule::after {
+  transform: scaleX(1);
+}
+
+@keyframes kenburns {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}
+.hero-kenburns {
+  animation: kenburns 18s var(--ease-out-expo) forwards;
+}
+
+.accordion-collapse .sleeve-photo {
+  opacity: 0;
+  transform: scale(1.04);
+  transition:
+    opacity 0.4s var(--ease-out-expo),
+    transform 0.4s var(--ease-out-expo);
+}
+.accordion-collapse[data-open="true"] .sleeve-photo {
+  opacity: 1;
+  transform: scale(1);
+}
+
+@keyframes lightbox-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.lightbox-dialog[open] .lightbox-media {
+  animation: lightbox-in 0.5s var(--ease-out-expo) both;
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.6em);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.rise-in {
+  animation: rise-in 0.7s var(--ease-out-expo) both;
 }
 
 @keyframes shake {
@@ -133,7 +246,7 @@ h3 {
 .accordion-collapse {
   display: grid;
   grid-template-rows: 0fr;
-  transition: grid-template-rows 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  transition: grid-template-rows 0.5s var(--ease-out-expo);
 }
 .accordion-collapse[data-open="true"] {
   grid-template-rows: 1fr;
@@ -211,5 +324,19 @@ html.contrast-mode video {
   .rise {
     opacity: 1 !important;
     transform: none !important;
+  }
+  .hero-kenburns,
+  .lightbox-dialog[open] .lightbox-media,
+  .rise-in {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .accordion-collapse .sleeve-photo {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .title-rule::after {
+    transform: scaleX(1) !important;
   }
 }

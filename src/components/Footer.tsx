@@ -55,7 +55,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className="text-ink-700 transition-colors hover:text-gold-600"
+                    className="link-underline text-ink-700 hover:text-gold-600"
                   >
                     {link.label}
                   </a>
@@ -67,13 +67,13 @@ export default function Footer() {
           <div className="space-y-2 text-ink-700">
             <a
               href={contact.phoneHref}
-              className="block transition-colors hover:text-gold-600"
+              className="link-underline hover:text-gold-600"
             >
               {contact.phoneDisplay}
             </a>
             <a
               href={`mailto:${contact.email}`}
-              className="block transition-colors hover:text-gold-600"
+              className="link-underline hover:text-gold-600"
             >
               {contact.email}
             </a>
@@ -85,7 +85,7 @@ export default function Footer() {
             href={agency.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="transition-colors hover:text-gold-600"
+            className="link-underline hover:text-gold-600"
           >
             <p>© {agency.name} {agency.year}</p>
             <p className="mt-1">{agency.services}</p>
@@ -95,7 +95,7 @@ export default function Footer() {
               <li>
                 <a
                   href={legal.privacy.href}
-                  className="transition-colors hover:text-gold-600"
+                  className="link-underline hover:text-gold-600"
                 >
                   {legal.privacy.label}
                 </a>
@@ -103,7 +103,7 @@ export default function Footer() {
               <li>
                 <a
                   href={legal.accessibility.href}
-                  className="transition-colors hover:text-gold-600"
+                  className="link-underline hover:text-gold-600"
                 >
                   {legal.accessibility.label}
                 </a>

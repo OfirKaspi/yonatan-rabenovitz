@@ -64,7 +64,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
               <a
                 href={link.href}
                 className={cn(
-                  "text-sm font-medium transition-colors hover:text-gold-400",
+                  "link-underline text-sm font-medium transition-colors hover:text-gold-400",
                   solid ? "text-ink-700" : "text-sand-50",
                 )}
               >
@@ -79,7 +79,7 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
           href={whatsappHref()}
           target="_blank"
           rel="noopener noreferrer"
-          className="hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5 lg:inline-flex"
+          className="btn-lift hidden items-center gap-2 rounded-full bg-whatsapp px-5 py-2.5 text-sm font-display font-bold tracking-wide text-white lg:inline-flex"
         >
           <WhatsAppIcon className="h-4 w-4" />
           {contactSection.title}
@@ -92,40 +92,49 @@ export default function Navbar({ variant = "overlay" }: NavbarProps) {
           className={cn("lg:hidden", solid ? "text-ink-900" : "text-sand-50")}
           aria-label={open ? "סגירת תפריט" : "פתיחת תפריט"}
           aria-expanded={open}
+          aria-controls="mobile-nav"
         >
           {open ? <X size={26} /> : <Menu size={26} />}
         </button>
       </nav>
 
       {/* Mobile menu */}
-      {open && (
-        <div className="border-t border-gold-400/40 bg-sand-50 lg:hidden">
-          <ul className="flex flex-col px-5 py-2">
-            {navLinks.map((link) => (
-              <li key={link.href}>
+      <div
+        id="mobile-nav"
+        className="accordion-collapse lg:hidden"
+        data-open={open}
+        inert={open ? undefined : true}
+        aria-hidden={!open}
+      >
+        <div className="accordion-collapse-inner">
+          <div className="border-t border-gold-400/40 bg-sand-50">
+            <ul className="flex flex-col px-5 py-2">
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <a
+                    href={link.href}
+                    onClick={() => setOpen(false)}
+                    className="link-underline py-3 text-base font-medium text-ink-700"
+                  >
+                    {link.label}
+                  </a>
+                </li>
+              ))}
+              <li className="py-3">
                 <a
-                  href={link.href}
-                  onClick={() => setOpen(false)}
-                  className="block py-3 text-base font-medium text-ink-700"
+                  href={whatsappHref()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-lift inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 text-base font-display font-bold tracking-wide text-white"
                 >
-                  {link.label}
+                  <WhatsAppIcon className="h-5 w-5" />
+                  {contactSection.title}
                 </a>
               </li>
-            ))}
-            <li className="py-3">
-              <a
-                href={whatsappHref()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-5 py-3 text-base font-display font-bold tracking-wide text-white"
-              >
-                <WhatsAppIcon className="h-5 w-5" />
-                {contactSection.title}
-              </a>
-            </li>
-          </ul>
+            </ul>
+          </div>
         </div>
-      )}
+      </div>
     </header>
   );
 }

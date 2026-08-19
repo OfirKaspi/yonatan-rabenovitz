@@ -32,7 +32,7 @@ export default function VideosSection() {
     <section id="videos" className="scroll-mt-28 bg-sand-50 py-20 md:py-32">
       <div className="mx-auto max-w-7xl px-5 md:px-8">
         <Reveal>
-          <h2 className="mb-12 text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:mb-16 md:text-6xl">
+          <h2 className="title-rule mb-12 text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:mb-16 md:text-6xl">
             {videos.title}
           </h2>
         </Reveal>
@@ -54,6 +54,7 @@ export default function VideosSection() {
             const selectedThumb = i === selectedIndex;
             return (
               <li key={item.id}>
+                <Reveal delay={i * 60}>
                 <button
                   type="button"
                   aria-pressed={selectedThumb}
@@ -73,7 +74,7 @@ export default function VideosSection() {
                     src={item.poster}
                     alt=""
                     fill
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="media-zoom object-cover"
                   />
                   <span className="pointer-events-none absolute inset-0 flex items-center justify-center">
                     <span className="flex h-8 w-8 items-center justify-center rounded-full bg-ink-900/70 text-sand-50">
@@ -81,6 +82,7 @@ export default function VideosSection() {
                     </span>
                   </span>
                 </button>
+                </Reveal>
               </li>
             );
           })}
@@ -91,7 +93,7 @@ export default function VideosSection() {
             href={contact.instagram}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4)] px-7 py-3.5 text-base font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5"
+            className="btn-lift inline-flex items-center gap-2 rounded-full bg-[linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4)] px-7 py-3.5 text-base font-display font-bold tracking-wide text-white"
           >
             <InstagramIcon className="h-5 w-5" />
             {videos.cta}

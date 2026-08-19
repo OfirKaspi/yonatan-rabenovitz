@@ -51,7 +51,7 @@ function SleeveDetails({ item }: { item: SleeveItem }) {
         href={whatsappHref(item.whatsappMessage)}
         target="_blank"
         rel="noopener noreferrer"
-        className="mt-7 inline-flex items-center gap-2 rounded-full bg-whatsapp px-7 py-3.5 text-base font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5"
+        className="btn-lift mt-7 inline-flex items-center gap-2 rounded-full bg-whatsapp px-7 py-3.5 text-base font-display font-bold tracking-wide text-white"
       >
         <WhatsAppIcon className="h-5 w-5" />
         {sleeve.cta}
@@ -141,7 +141,7 @@ export default function SleeveSection() {
     <section id="sleeve" className="scroll-mt-28 bg-sand-100 py-20 md:py-32">
       <div className="mx-auto max-w-6xl px-5 md:px-8">
         <Reveal>
-          <h2 className="mb-12 text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:mb-16 md:text-6xl">
+          <h2 className="title-rule mb-12 text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:mb-16 md:text-6xl">
             {sleeve.title}
           </h2>
         </Reveal>
@@ -154,6 +154,7 @@ export default function SleeveSection() {
 
             return (
               <li key={item.id}>
+                <Reveal delay={i * 80}>
                 <h3>
                   <button
                     id={headerId}
@@ -218,7 +219,7 @@ export default function SleeveSection() {
                             height={1200}
                             crop="fill"
                             gravity="auto"
-                            className="object-cover"
+                            className="sleeve-photo object-cover"
                             priority={i === 0}
                           />
                         </div>
@@ -229,6 +230,7 @@ export default function SleeveSection() {
                     </div>
                   </div>
                 </div>
+                </Reveal>
               </li>
             );
           })}

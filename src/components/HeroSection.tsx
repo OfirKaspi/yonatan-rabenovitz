@@ -25,7 +25,7 @@ export default function HeroSection() {
         alt={brand.name}
         fill
         priority
-        className="object-cover"
+        className="hero-kenburns object-cover"
       />
 
       <div className="absolute inset-x-0 top-0 h-28 bg-linear-to-b from-ink-900/50 to-transparent" />
@@ -59,14 +59,14 @@ export default function HeroSection() {
               href={whatsappHref()}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-whatsapp px-7 py-3.5 text-base font-display font-bold tracking-wide text-white transition-transform hover:-translate-y-0.5"
+              className="btn-lift inline-flex items-center gap-2 rounded-full bg-whatsapp px-7 py-3.5 text-base font-display font-bold tracking-wide text-white"
             >
               <WhatsAppIcon className="h-5 w-5" />
               {hero.ctaPrimary}
             </a>
             <a
               href="#sleeve"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-display font-bold tracking-wide text-ink-900 transition-transform hover:-translate-y-0.5"
+              className="btn-lift inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-base font-display font-bold tracking-wide text-ink-900"
             >
               {hero.ctaSecondary}
             </a>

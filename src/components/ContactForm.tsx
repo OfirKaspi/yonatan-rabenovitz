@@ -76,7 +76,7 @@ export default function ContactForm() {
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 px-5 md:grid-cols-12 md:gap-16 md:px-8">
         <div className="md:col-span-6 md:pt-4">
           <Reveal>
-            <h2 className="text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-start md:text-6xl">
+            <h2 className="title-rule title-rule-start-md text-center font-display font-bold tracking-tight leading-snug text-5xl text-ink-900 md:text-start md:text-6xl">
               {contactSection.title}
             </h2>
           </Reveal>
@@ -169,14 +169,14 @@ export default function ContactForm() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full rounded-full border border-gold-400 bg-ink-900 py-3.5 text-base font-display font-bold tracking-wide text-sand-50 transition-transform hover:-translate-y-0.5 disabled:opacity-60"
+                    className="btn-lift w-full rounded-full border border-gold-400 bg-ink-900 py-3.5 text-base font-display font-bold tracking-wide text-sand-50 disabled:opacity-60"
                   >
                     {contactSection.title}
                   </button>
                   <p className="text-center text-sm text-ink-500">
                     <a
                       href={legal.privacy.href}
-                      className="transition-colors hover:text-gold-600"
+                      className="link-underline"
                     >
                       {legal.formConsent}
                     </a>
@@ -189,7 +189,7 @@ export default function ContactForm() {
                   <dd>
                     <a
                       href={contact.phoneHref}
-                      className="text-lg font-medium transition-colors hover:text-gold-600"
+                      className="link-underline text-lg font-medium hover:text-gold-600"
                     >
                       {contact.phoneDisplay}
                     </a>
@@ -199,7 +199,7 @@ export default function ContactForm() {
                   <dd>
                     <a
                       href={`mailto:${contact.email}`}
-                      className="text-lg font-medium transition-colors hover:text-gold-600"
+                      className="link-underline text-lg font-medium hover:text-gold-600"
                     >
                       {contact.email}
                     </a>
@@ -212,17 +212,19 @@ export default function ContactForm() {
       </div>
 
       {showToast && (
-        <div
-          role="status"
-          aria-live="polite"
-          className="fixed bottom-24 left-1/2 z-50 w-[min(92vw,24rem)] -translate-x-1/2 rounded-2xl border border-sand-200 bg-ink-900 px-5 py-4 text-center shadow-lg shadow-ink-900/20 md:bottom-8"
-        >
+        <div className="fixed bottom-24 left-1/2 z-50 w-[min(92vw,24rem)] -translate-x-1/2 md:bottom-8">
+          <div
+            role="status"
+            aria-live="polite"
+            className="rise-in rounded-2xl border border-sand-200 bg-ink-900 px-5 py-4 text-center shadow-lg shadow-ink-900/20"
+          >
           <p className="font-display font-bold text-sand-50">
             {contactSection.successTitle}
           </p>
           <p className="mt-1 text-sm text-sand-200">
             {contactSection.successBody}
           </p>
+          </div>
         </div>
       )}
     </section>

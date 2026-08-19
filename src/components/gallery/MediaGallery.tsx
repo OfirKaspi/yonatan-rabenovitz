@@ -44,7 +44,7 @@ export default function MediaGallery({
             alt=""
             sizes="(max-width: 768px) 100vw, 80rem"
             priority
-            className="transition-transform duration-700 group-hover:scale-105"
+            className="media-zoom"
           />
         </button>
       </Reveal>
@@ -54,6 +54,7 @@ export default function MediaGallery({
           const selectedThumb = i === selectedIndex;
           return (
             <li key={`${item.type}-${item.src}-${i}`} className="shrink-0">
+              <Reveal delay={i * 60}>
               <button
                 type="button"
                 aria-pressed={selectedThumb}
@@ -71,9 +72,10 @@ export default function MediaGallery({
                   variant="thumb"
                   alt=""
                   sizes="112px"
-                  className="transition-transform duration-700 group-hover:scale-105"
+                  className="media-zoom"
                 />
               </button>
+              </Reveal>
             </li>
           );
         })}
