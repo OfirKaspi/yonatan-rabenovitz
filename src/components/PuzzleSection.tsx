@@ -7,7 +7,7 @@ import { RefreshCw, Trophy, HelpCircle, X } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/cn";
 import { whatsappHref } from "@/lib/whatsapp";
-import { puzzle, contactSection } from "@/content/site";
+import { puzzle } from "@/content/site";
 import WhatsAppIcon from "@/components/WhatsAppIcon";
 
 interface Point {
@@ -368,22 +368,24 @@ export default function PuzzleSection() {
                   </h2>
                 </div>
 
-                <p
+                <div
                   id="puzzle-success-body"
-                  className="text-base font-medium leading-7 text-ink-700 sm:text-lg"
+                  className="space-y-3 text-base font-medium leading-7 text-ink-700 sm:text-lg"
                 >
-                  {puzzle.successBody}
-                </p>
+                  {puzzle.successBody.map((line) => (
+                    <p key={line}>{line}</p>
+                  ))}
+                </div>
 
                 <div className="mt-7 flex flex-col gap-3">
                   <a
-                    href={whatsappHref()}
+                    href={whatsappHref(puzzle.successWhatsappMessage)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="btn-lift inline-flex w-full items-center justify-center gap-2 rounded-full bg-whatsapp px-6 py-3.5 text-base font-display font-bold tracking-wide text-white"
                   >
                     <WhatsAppIcon className="h-5 w-5" />
-                    {contactSection.title}
+                    {puzzle.successCta}
                   </a>
                   <button
                     type="button"

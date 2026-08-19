@@ -17,7 +17,7 @@ const rubik = Rubik({
   weight: ["600", "700", "800", "900"],
 });
 
-const title = `${brand.name} | ${brand.role}`;
+const title = brand.metaTitle;
 const description =
   "יונתן רבינוביץ', אמן קלפים, חי במרחב השראה בלב המרכז - תל אביב.";
 const ogImage = {

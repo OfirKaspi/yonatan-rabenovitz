@@ -2,7 +2,7 @@
 
 import OptimizedImage from "@/components/OptimizedImage";
 import Reveal from "@/components/Reveal";
-import { about, assets, brand } from "@/content/site";
+import { about, assets, brand, cld } from "@/content/site";
 
 export default function AboutSection() {
   return (
@@ -11,17 +11,18 @@ export default function AboutSection() {
         <div className="md:col-span-5">
           <Reveal
             variant="mask"
-            className="relative aspect-4/5 overflow-hidden rounded-3xl md:sticky md:top-28"
+            className="relative aspect-[4/5] w-full md:w-[124%] md:max-w-none md:-me-[12%] md:sticky md:top-20"
           >
             <OptimizedImage
-              src={assets.ted2}
+              src={cld(
+                "e_background_removal,f_png,q_auto,w_960",
+                assets.ted2,
+              )}
               alt={brand.name}
               fill
               width={960}
               height={1200}
-              crop="fill"
-              gravity="auto"
-              className="object-cover"
+              className="object-contain object-bottom [mask-image:linear-gradient(to_bottom,black_78%,rgb(0_0_0_/_0.45)_92%,transparent)] [-webkit-mask-image:linear-gradient(to_bottom,black_78%,rgb(0_0_0_/_0.45)_92%,transparent)]"
             />
           </Reveal>
         </div>

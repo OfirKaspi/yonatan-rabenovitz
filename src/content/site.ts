@@ -49,6 +49,7 @@ export const contact = {
 export const brand = {
   name: "יונתן רבינוביץ'",
   role: "אמן קלפים",
+  metaTitle: "יונתן רבינוביץ׳ קוסם ואומן חושים",
 } as const;
 
 export const navLinks = [
@@ -238,8 +239,13 @@ export const puzzle = {
   failBody:
     "בקסמים ובמנטליזם, הסוד הוא לפרוץ את הגבולות! נסה למתוח את הקווים מעבר לגבולות הריבוע.",
   successTitle: "כל הכבוד! הצלחת!",
-  successBody:
-    "מי שחושב מחוץ לקופסה מרוויח. מגיע לך שהאירוע שלך יהיה מיוחד באותה מידה.",
+  successBody: [
+    "עכשיו תנסה עם שלושה קווים ולא ארבעה.",
+    "צריך לחשוב עוד קצת מחוץ לקופסה.",
+    "שלח לי הודעה כשמצאת את הפתרון!",
+  ],
+  successCta: "שלח לי הודעה",
+  successWhatsappMessage: "שלום יונתן! מצאתי את הפתרון ב-3 קווים",
   close: "סגור",
   hintToggle: "צריך רמז?",
   hintHide: "הסתר רמז",
