@@ -14,7 +14,7 @@ export default function AboutSection() {
             className="relative aspect-4/5 overflow-hidden rounded-3xl md:sticky md:top-28"
           >
             <OptimizedImage
-              src={assets.stage}
+              src={assets.ted2}
               alt={brand.name}
               fill
               width={960}

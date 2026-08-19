@@ -29,8 +29,10 @@ export const assets = {
   galleryB: `${CLOUD}/v1787154402/LevelUp/yonatan-rabenovitz/8ae44163-f366-49fa-b4ba-97ea9e48e58f_l9c31o.jpg`,
   galleryC: `${CLOUD}/v1787154399/LevelUp/yonatan-rabenovitz/010b2385-7a4a-423b-8557-7b36de3eebcb_htfdxu.jpg`,
   galleryD: `${CLOUD}/v1787154400/LevelUp/yonatan-rabenovitz/080d549f-85c5-4c40-bf70-57a980885263_iobgxc.jpg`,
+  galleryE: `${CLOUD}/v1787154398/LevelUp/yonatan-rabenovitz/3283f2bf-73ad-4caf-9b87-450145bf5ae0_jyvc49.jpg`,
   workshop: `${CLOUD}/v1787154400/LevelUp/yonatan-rabenovitz/554cbed5-3878-4359-b59b-d6f5797f3ae7_anqazq.jpg`,
   lessons: `${CLOUD}/v1787158874/LevelUp/yonatan-rabenovitz/1969fe9b-cbe4-4299-8fbb-c35978282f11_qnkmbd.jpg`,
+  reception: `${CLOUD}/v1787160032/LevelUp/yonatan-rabenovitz/PHOTO-2026-08-19-19-59-32_k3ygyx.jpg`,
   og: `${CLOUD}/v1787154398/LevelUp/yonatan-rabenovitz/1a3a6490-ee2a-45b1-82c0-ff233717d573_yznrvk.jpg`,
   logoAnimation: `${CLOUDINARY_VIDEO_BASE}/v1787157830/LevelUp/yonatan-rabenovitz/logo-animation-loop.mp4`,
 } as const;
@@ -41,7 +43,7 @@ export const contact = {
   phoneHref: "tel:+972549383155",
   email: "Yonatan.rabenovitz@gmail.com",
   instagram: "https://www.instagram.com/yonatan.rabinovitz",
-  prefilledMessage: "היי יונתן, אשמח לשמוע על מופע לאירוע שלי 🃏",
+  prefilledMessage: "שלום יונתן! \nיש לי אירוע והבנתי שאתה הבן אדם לדבר איתו. אשמח לקבל עוד פרטים על המופע",
 } as const;
 
 export const brand = {
@@ -104,24 +106,9 @@ export const sleeve = {
   cta: "כזה אני רוצה",
   items: [
     {
-      id: "walkaround",
-      title: "קבלת פנים - walk around magic",
-      image: assets.cardThrow,
-      body: [
-        "סוג זה של מפגש מאפשר לי להעביר את הקסם באופן הכי אישי וקרוב שיכול להיות.",
-        "במהלך האירוע אני עובר בין קבוצות של אנשים, שולחנות או מתחמים ופוגש את המשתתפים, עושה קסמים ומאפשר הצצה בלעדית לעולם הקסמים. כך, מתאפשר מפגש מרגש ואינטימי בין האנשים לקסם.",
-      ],
-      audienceTitle: "למי קבלת הפנים מתאימה?",
-      audience: [
-        "אירועים, חתונות, מסיבות, מסעדות, וכל מרחב שיש בו קבלת קהל או זמן חופשי של משתתפים. מתאים מאוד למי שרוצה לשלב ערך מוסף וקסם באירוע מבלי לסגור משבצת זמן ייעודית.",
-      ],
-      whatsappMessage:
-        "שלום יונתן! \nיש לי אירוע והבנתי שאתה הבן אדם לדבר איתו. אשמח לקבל עוד פרטים על קבלת הפנים",
-    },
-    {
       id: "mazaltov",
       title: '"מזל טוב" - מופע קסמים ייחודי',
-      image: assets.ted2,
+      image: assets.stage,
       body: [
         "מתי בפעם האחרונה חווית קסם?",
         "אבל אמיתי מה, שהחושים וההיגיון לא מצליחים להסביר.",
@@ -136,6 +123,21 @@ export const sleeve = {
       ],
       whatsappMessage:
         "שלום יונתן! \nיש לי אירוע והבנתי שאתה הבן אדם לדבר איתו. אשמח לקבל עוד פרטים על המופע",
+    },
+    {
+      id: "walkaround",
+      title: "קבלת פנים - walk around magic",
+      image: assets.ted2,
+      body: [
+        "סוג זה של מפגש מאפשר לי להעביר את הקסם באופן הכי אישי וקרוב שיכול להיות.",
+        "במהלך האירוע אני עובר בין קבוצות של אנשים, שולחנות או מתחמים ופוגש את המשתתפים, עושה קסמים ומאפשר הצצה בלעדית לעולם הקסמים. כך, מתאפשר מפגש מרגש ואינטימי בין האנשים לקסם.",
+      ],
+      audienceTitle: "למי קבלת הפנים מתאימה?",
+      audience: [
+        "אירועים, חתונות, מסיבות, מסעדות, וכל מרחב שיש בו קבלת קהל או זמן חופשי של משתתפים. מתאים מאוד למי שרוצה לשלב ערך מוסף וקסם באירוע מבלי לסגור משבצת זמן ייעודית.",
+      ],
+      whatsappMessage:
+        "שלום יונתן! \nיש לי אירוע והבנתי שאתה הבן אדם לדבר איתו. אשמח לקבל עוד פרטים על קבלת הפנים",
     },
     {
       id: "workshop",
@@ -187,6 +189,7 @@ export const moments = {
     { type: "image", src: assets.audience2 },
     { type: "image", src: assets.galleryC },
     { type: "image", src: assets.galleryD },
+    { type: "image", src: assets.galleryE },
   ],
 } as const satisfies { title: string; cta: string; items: readonly GalleryItem[] };
 
@@ -208,6 +211,16 @@ export const videos = {
       id: "1218827628",
       poster:
         "https://i.vimeocdn.com/video/2190872005-817671b89de93b3df02f189bcd5dfd7f38236d05f8df80332fb89eb75055876a-d_360x640",
+    },
+    {
+      id: "1219617855",
+      poster:
+        "https://i.vimeocdn.com/video/2191858064-610d043a3976733fa7ba52cd09803c7c80cc705de0f9a004b967720fed58456f-d_360x640",
+    },
+    {
+      id: "1218827639",
+      poster:
+        "https://i.vimeocdn.com/video/2190872016-0aa2ae604a3f54f14054f535a5141f81beb4bc3c2b85145f3d28918340c5b491-d_360x640",
     },
   ],
 } as const;
@@ -236,6 +249,7 @@ export const puzzle = {
 
 export const contactSection = {
   title: "בואו נדבר",
+  eventDatePlaceholder: "תאריך משוער",
   successTitle: "הפרטים נשלחו בהצלחה",
   successBody: "תודה רבה, ניצור איתך קשר בהקדם.",
 } as const;

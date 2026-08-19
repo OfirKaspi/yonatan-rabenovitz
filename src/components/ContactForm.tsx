@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import OptimizedImage from "@/components/OptimizedImage";
-import { Check } from "lucide-react";
+import { Check, Calendar } from "lucide-react";
 import Reveal from "@/components/Reveal";
 import { cn } from "@/lib/cn";
 import { contactSection, contact, assets, sleeve, brand, legal } from "@/content/site";
@@ -30,6 +30,7 @@ export default function ContactForm() {
     register,
     handleSubmit,
     reset,
+    watch,
     formState: { errors },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -67,6 +68,13 @@ export default function ContactForm() {
     const t = window.setTimeout(() => setShowToast(false), 5000);
     return () => window.clearTimeout(t);
   }, [showToast]);
+
+  const eventDate = watch("eventDate");
+  const today = new Date();
+  const minDate = `${today.getFullYear()}-${String(today.getMonth() + 1).padStart(2, "0")}-${String(today.getDate()).padStart(2, "0")}`;
+  const eventDateLabel = eventDate
+    ? new Date(`${eventDate}T00:00:00`).toLocaleDateString("he-IL")
+    : contactSection.eventDatePlaceholder;
 
   const fieldBase =
     "w-full rounded-2xl border bg-sand-50 px-4 py-3 text-ink-900 placeholder:text-ink-500/60 transition-colors focus:border-gold-500 focus:bg-white focus:outline-none";
@@ -148,11 +156,25 @@ export default function ContactForm() {
                     ))}
                   </select>
 
-                  <input
-                    {...register("eventDate")}
-                    type="date"
-                    className={cn(fieldBase, "border-sand-200")}
-                  />
+                  <div className="group relative">
+                    <div
+                      className={cn(
+                        fieldBase,
+                        "pointer-events-none flex items-center justify-between border-sand-200 group-focus-within:border-gold-500 group-focus-within:bg-white",
+                        eventDate ? "text-ink-900" : "text-ink-500/60",
+                      )}
+                    >
+                      <span>{eventDateLabel}</span>
+                      <Calendar className="h-4 w-4 shrink-0 text-ink-500" aria-hidden />
+                    </div>
+                    <input
+                      {...register("eventDate")}
+                      type="date"
+                      min={minDate}
+                      aria-label={contactSection.eventDatePlaceholder}
+                      className="absolute inset-0 z-1 cursor-pointer opacity-[0.02]"
+                    />
+                  </div>
 
                   <textarea
                     {...register("notes")}

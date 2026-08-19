@@ -47,35 +47,39 @@ export default function VideosSection() {
           </h2>
         </Reveal>
 
-        <div className="mx-auto w-full max-w-sm md:max-w-md">
-        <Reveal variant="mask" className="relative aspect-9/16 overflow-hidden rounded-3xl">
-          <OptimizedImage
-            src={selected.poster}
-            alt=""
-            fill
-            priority
-            className="object-cover"
-          />
-          {playerReady ? null : <MediaSpinner />}
-          <iframe
-            key={playerKey}
-            src={vimeoSrc(selected.id, { autoplay: true, muted })}
-            title={brand.name}
-            allow="autoplay; fullscreen; picture-in-picture"
-            allowFullScreen
-            onLoad={() => setReadyKey(playerKey)}
-            className={cn(
-              "absolute inset-0 h-full w-full border-0",
-              playerReady ? "opacity-100" : "opacity-0",
-            )}
-          />
+        <Reveal
+          variant="mask"
+          className="relative flex h-[min(70svh,36rem)] items-center justify-center overflow-hidden rounded-3xl bg-ink-900 md:h-[min(78svh,48rem)]"
+        >
+          <div className="relative h-full max-w-full aspect-9/16">
+            <OptimizedImage
+              src={selected.poster}
+              alt=""
+              fill
+              priority
+              className="object-cover"
+            />
+            {playerReady ? null : <MediaSpinner />}
+            <iframe
+              key={playerKey}
+              src={vimeoSrc(selected.id, { autoplay: true, muted })}
+              title={brand.name}
+              allow="autoplay; fullscreen; picture-in-picture"
+              allowFullScreen
+              onLoad={() => setReadyKey(playerKey)}
+              className={cn(
+                "absolute inset-0 h-full w-full border-0",
+                playerReady ? "opacity-100" : "opacity-0",
+              )}
+            />
+          </div>
         </Reveal>
 
-        <ul className="mt-3 grid grid-cols-3 gap-3 p-2.5 md:mt-4 md:gap-4 md:p-3">
+        <ul className="mt-3 flex gap-3 overflow-x-auto p-2.5 md:mt-4 md:gap-4 md:p-3">
           {videos.items.map((item, i) => {
             const selectedThumb = i === selectedIndex;
             return (
-              <li key={item.id}>
+              <li key={item.id} className="shrink-0">
                 <Reveal delay={i * 60}>
                 <button
                   type="button"
@@ -84,7 +88,7 @@ export default function VideosSection() {
                   onPointerDown={() => selectVideo(i)}
                   onClick={() => selectVideo(i)}
                   className={cn(
-                    "group relative block aspect-9/16 w-full overflow-hidden rounded-2xl",
+                    "group relative block aspect-9/16 w-20 overflow-hidden rounded-2xl md:w-28",
                     selectedThumb
                       ? "ring-2 ring-gold-500 ring-offset-2 ring-offset-sand-50"
                       : "opacity-80 hover:opacity-100",
@@ -119,7 +123,6 @@ export default function VideosSection() {
             {videos.cta}
           </a>
         </Reveal>
-        </div>
       </div>
     </section>
   );
